@@ -1,8 +1,3 @@
-
-![Twilight Logo](repo/logo.png)
-
----
-
 ## Licensing
 
 - All code is released under the **GNU GPL v2.1** license [HERE](LICENSE).
@@ -33,13 +28,11 @@ Be sure to check out their project for NeoForge releases.
 
 While the goal is not exact parity with the original mod, most relevant features are planned to be replicated in some form.
 
-To view the progress of indivudal features, check [HERE](repo/TODO.md)
-
 ---
 
 ## 📦 Downloads
 
-Once version **1.0.0** becomes available, builds will be published on:
+Once mod is more complete, builds will be published on:
 
 - [Modrinth](https://modrinth.com/)
 
