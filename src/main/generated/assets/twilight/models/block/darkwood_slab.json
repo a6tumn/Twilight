@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "twilight:block/darkwood_planks",
+    "side": "twilight:block/darkwood_planks",
+    "top": "twilight:block/darkwood_planks"
+  }
+}

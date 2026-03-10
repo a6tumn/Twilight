@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "twilight:timewood_chest"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_timewood_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "twilight:timewood_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_timewood_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "twilight:timewood_chest"
+    ]
+  }
+}

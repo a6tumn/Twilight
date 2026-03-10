@@ -1,0 +1,47 @@
+{
+	"schemaVersion": 1,
+	"id": "twilight",
+	"version": "${version}",
+	"name": "Twilight",
+	"description": "Rewrite of the popular Twilight Forest mod to run natively on Fabric.",
+	"authors": [
+		"Autumn(shinigami7x@proton.me)"
+	],
+	"contact": {
+		"homepage": "https://github.com/shinigami7x",
+		"sources": "https://github.com/shinigami7x/TwilightForest"
+	},
+	"license": [
+		"GPL-2.0-only",
+		"CC BY-NC-SA 4.0 International"
+	],
+	"icon": "assets/twilight/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "io.autumn.torchberry.generated.TorchberryGeneratedEntrypoint",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "io.autumn.torchberry.generated.TorchberryGeneratedClientEntrypoint",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "io.autumn.twilight.TwilightDataGenerator",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~26.1-",
+		"java": ">=25",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	}
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "twilight:block/timewood_planks",
+    "side": "twilight:block/timewood_planks",
+    "top": "twilight:block/timewood_planks"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "twilight:block/darkwood_leaves"
+  }
+}

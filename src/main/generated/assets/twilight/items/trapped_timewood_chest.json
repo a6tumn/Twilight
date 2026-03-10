@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "twilight:item/trapped_timewood_chest",
+    "model": {
+      "type": "twilight:lockless_chest",
+      "texture": "twilight:trapped_timewood"
+    }
+  }
+}

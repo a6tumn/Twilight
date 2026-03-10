@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "twilight:block/timewood_slab"
+    },
+    "type=double": {
+      "model": "twilight:block/timewood_planks"
+    },
+    "type=top": {
+      "model": "twilight:block/timewood_slab_top"
+    }
+  }
+}

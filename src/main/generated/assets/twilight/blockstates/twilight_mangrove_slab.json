@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "twilight:block/twilight_mangrove_slab"
+    },
+    "type=double": {
+      "model": "twilight:block/twilight_mangrove_planks"
+    },
+    "type=top": {
+      "model": "twilight:block/twilight_mangrove_slab_top"
+    }
+  }
+}

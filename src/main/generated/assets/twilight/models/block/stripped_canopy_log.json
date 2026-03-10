@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "twilight:block/stripped_canopy_log_top",
+    "side": "twilight:block/stripped_canopy_log"
+  }
+}

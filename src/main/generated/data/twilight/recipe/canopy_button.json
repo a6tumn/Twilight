@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    "twilight:canopy_planks"
+  ],
+  "result": {
+    "id": "twilight:canopy_button"
+  }
+}

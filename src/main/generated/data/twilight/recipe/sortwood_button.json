@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    "twilight:sortwood_planks"
+  ],
+  "result": {
+    "id": "twilight:sortwood_button"
+  }
+}

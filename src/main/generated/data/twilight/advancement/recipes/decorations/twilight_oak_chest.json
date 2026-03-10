@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "twilight:twilight_oak_chest"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_twilight_oak_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "twilight:twilight_oak_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_twilight_oak_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "twilight:twilight_oak_chest"
+    ]
+  }
+}

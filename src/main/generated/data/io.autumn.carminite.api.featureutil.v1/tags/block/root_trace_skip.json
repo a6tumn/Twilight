@@ -1,0 +1,15 @@
+{
+  "values": [
+    {
+      "id": "#minecraft:logs",
+      "required": false
+    },
+    "twilight:root_block",
+    "twilight:liveroot_block",
+    "twilight:twilight_mangrove_root",
+    {
+      "id": "#minecraft:features_cannot_replace",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "twilight:item/trapped_twilight_mangrove_chest",
+    "model": {
+      "type": "minecraft:chest",
+      "texture": "twilight:trapped_twilight_mangrove"
+    }
+  }
+}

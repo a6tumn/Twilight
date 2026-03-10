@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "twilight:item/trapped_darkwood_chest",
+    "model": {
+      "type": "minecraft:chest",
+      "texture": "twilight:trapped_darkwood"
+    }
+  }
+}

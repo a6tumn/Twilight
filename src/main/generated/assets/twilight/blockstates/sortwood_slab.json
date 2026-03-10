@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "twilight:block/sortwood_slab"
+    },
+    "type=double": {
+      "model": "twilight:block/sortwood_planks"
+    },
+    "type=top": {
+      "model": "twilight:block/sortwood_slab_top"
+    }
+  }
+}

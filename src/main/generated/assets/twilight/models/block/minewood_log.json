@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "twilight:block/minewood_log_top",
+    "side": "twilight:block/minewood_log"
+  }
+}

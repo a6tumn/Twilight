@@ -1,0 +1,16 @@
+[versions]
+minecraft = "26.1-snapshot-11"
+loader = "0.18.4"
+fabric-api = "0.143.8+26.1"
+fabric-kotlin = "1.13.9+kotlin.2.3.10"
+carminite = "3.0.0"
+torchberry = "0.0.3"
+
+[libraries]
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+fabricLoader = { module = "net.fabricmc:fabric-loader", version.ref = "loader" }
+fabricApi = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric-api" }
+fabricKotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabric-kotlin" }
+carminiteApi = { module = "io.autumn.carminite:carminite-lib", version.ref = "carminite"}
+torchberryAnnotations = { module = "io.autumn.torchberry:annotations", version.ref = "torchberry"}
+torchberryKSP = { module = "io.autumn.torchberry:processor", version.ref = "torchberry"}

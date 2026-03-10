@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "twilight:block/twilight_oak_sapling"
+  }
+}

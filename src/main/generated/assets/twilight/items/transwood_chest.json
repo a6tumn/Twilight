@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "twilight:item/transwood_chest",
+    "model": {
+      "type": "minecraft:chest",
+      "texture": "twilight:transwood"
+    }
+  }
+}

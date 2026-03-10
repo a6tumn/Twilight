@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "twilight:block/sortwood_planks",
+    "side": "twilight:block/sortwood_planks",
+    "top": "twilight:block/sortwood_planks"
+  }
+}
