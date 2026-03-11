@@ -26,9 +26,10 @@ object TwilightCreativeModeTabs {
                 .displayItems { _, entries ->
                     entries.accept(TwilightBlocks.CORONATION_CARPET_CRUDE)
                     entries.accept(TwilightBlocks.HEDGE)
-
                     entries.accept(TwilightBlocks.ROOT_BLOCK)
                     entries.accept(TwilightBlocks.LIVEROOT_BLOCK)
+                    entries.accept(TwilightBlocks.FIDDLEHEAD)
+                    entries.accept(TwilightBlocks.MUSHGLOOM)
 
                     entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.log)
                     entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.strippedLog)

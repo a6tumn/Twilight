@@ -29,6 +29,8 @@ class BlockLootTableProvider(output: FabricPackOutput, registriesFuture: Complet
 
         dropSelf(TwilightBlocks.CORONATION_CARPET_CRUDE)
         dropSelf(TwilightBlocks.HEDGE)
+        dropSelf(TwilightBlocks.FIDDLEHEAD)
+        dropSelf(TwilightBlocks.MUSHGLOOM)
     }
 
     private fun createWoodSetDrops(woodSet: WoodSet, chestBlock: Block, trappedChestBlock: Block) {

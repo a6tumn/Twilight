@@ -13,6 +13,12 @@ class EnglishLangProvider(output: FabricPackOutput, registriesFuture: Completabl
     override fun generateTranslations(registryLookup: HolderLookup.Provider, translationBuilder: TranslationBuilder) {
         translationBuilder.add(TwilightBlocks.ROOT_BLOCK, "Root Block")
         translationBuilder.add(TwilightBlocks.LIVEROOT_BLOCK, "Liveroot Block")
+        translationBuilder.add(TwilightBlocks.CORONATION_CARPET_CRUDE, "Coronation Carpet")
+        translationBuilder.add(TwilightBlocks.HEDGE, "Hedge")
+        translationBuilder.add(TwilightBlocks.FIDDLEHEAD, "Fiddlehead")
+        translationBuilder.add(TwilightBlocks.POTTED_FIDDLEHEAD, "Potted Fiddlehead")
+        translationBuilder.add(TwilightBlocks.MUSHGLOOM, "Mushgloom")
+        translationBuilder.add(TwilightBlocks.POTTED_MUSHGLOOM, "Potted Mushgloom")
 
         createWoodSetTranslations(translationBuilder, "Twilight Oak", TwilightBlocks.TWILIGHT_OAK_SET, TwilightBlocks.TWILIGHT_OAK_CHEST, TwilightBlocks.TRAPPED_TWILIGHT_OAK_CHEST)
         translationBuilder.add(TwilightBlocks.RAINBOW_OAK_LEAVES, "Rainbow Oak Leaves")
@@ -29,8 +35,6 @@ class EnglishLangProvider(output: FabricPackOutput, registriesFuture: Completabl
         translationBuilder.add(TwilightBlocks.MINEWOOD_CORE, "Minewood Core")
         createWoodSetTranslations(translationBuilder, "Sortwood", TwilightBlocks.SORTWOOD_SET, TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST)
         translationBuilder.add(TwilightBlocks.SORTWOOD_CORE, "Sortwood Core")
-        translationBuilder.add(TwilightBlocks.CORONATION_CARPET_CRUDE, "Coronation Carpet")
-        translationBuilder.add(TwilightBlocks.HEDGE, "Hedge")
 
         translationBuilder.add(TwilightItemTags.TWILIGHT_OAK_LOGS_ITEM_TAG, "Twilight Oak Logs")
         translationBuilder.add(TwilightItemTags.CANOPY_LOGS_ITEM_TAG, "Canopy Logs")

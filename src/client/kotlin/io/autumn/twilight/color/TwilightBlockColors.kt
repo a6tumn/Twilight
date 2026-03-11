@@ -10,7 +10,12 @@ import net.minecraft.client.color.block.BlockTintSources
 object TwilightBlockColors {
     init {
         registerGenericBlockColor(listOf(TwilightBlockTintSources.rainbowFoliage()), TwilightBlocks.RAINBOW_OAK_LEAVES)
-        registerGenericBlockColor(listOf(BlockTintSources.foliage()), TwilightBlocks.TWILIGHT_OAK_SET.leaves, TwilightBlocks.DARKWOOD_SET.leaves)
+        registerGenericBlockColor(listOf(BlockTintSources.foliage()),
+            TwilightBlocks.TWILIGHT_OAK_SET.leaves,
+            TwilightBlocks.DARKWOOD_SET.leaves,
+            TwilightBlocks.FIDDLEHEAD,
+            TwilightBlocks.POTTED_FIDDLEHEAD
+        )
         registerGenericBlockColor(listOf(TwilightBlockTintSources.canopyFoliage()), TwilightBlocks.CANOPY_SET.leaves)
         registerGenericBlockColor(listOf(TwilightBlockTintSources.mangroveFoliage()), TwilightBlocks.TWILIGHT_MANGROVE_SET.leaves)
         registerGenericBlockColor(listOf(TwilightBlockTintSources.timewoodFoliage()), TwilightBlocks.TIMEWOOD_SET.leaves)

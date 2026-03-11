@@ -6,14 +6,17 @@ import io.autumn.carminite.wood.WoodSet
 import io.autumn.torchberry.annotations.OnInitialize
 import io.autumn.twilight.Twilight
 import io.autumn.twilight.block.custom.ConnectedCarpetBlock
+import io.autumn.twilight.block.custom.FiddleheadBlock
 import io.autumn.twilight.block.custom.HedgeBlock
 import io.autumn.twilight.block.custom.MinewoodCoreBlock
+import io.autumn.twilight.block.custom.MushgloomBlock
 import io.autumn.twilight.block.custom.SortwoodCoreBlock
 import io.autumn.twilight.block.custom.TimewoodCoreBlock
 import io.autumn.twilight.block.custom.TranswoodCoreBlock
 import io.autumn.twilight.block.custom.TwilightChestBlock
 import io.autumn.twilight.block.custom.TwilightTrappedChestBlock
 import io.autumn.twilight.blockentity.TwilightBlockEntityTypes
+import io.autumn.twilight.bootstrap.TwilightTreeConfigurations
 import io.autumn.twilight.lists.TwilightTreeGrowers
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.level.block.Block
@@ -31,8 +34,14 @@ import net.minecraft.world.level.material.PushReaction
 
 object TwilightBlocks {
 
+    val CORONATION_CARPET_CRUDE = registerGenericBlock(Twilight.namespaceAndPath("coronation_carpet"), ::ConnectedCarpetBlock, carpetProperties(MapColor.COLOR_RED))
     val ROOT_BLOCK = registerGenericBlock(Twilight.namespaceAndPath("root_block"), ::Block, BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.WOOD).sound(SoundType.WOOD).strength(2.0F, 3.0F))
     val LIVEROOT_BLOCK = registerGenericBlock(Twilight.namespaceAndPath("liveroot_block"), ::Block, BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.COLOR_LIGHT_GREEN).sound(SoundType.WOOD).strength(2.0F, 3.0F))
+    val HEDGE = registerGenericBlock(Twilight.namespaceAndPath("hedge"), ::HedgeBlock, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).strength(2.0f, 3.0f).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY))
+    val FIDDLEHEAD = registerGenericBlock(Twilight.namespaceAndPath("fiddlehead"), ::FiddleheadBlock, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).ignitedByLava().instabreak().noCollision().noOcclusion().pushReaction(PushReaction.DESTROY).sound(SoundType.GRASS).replaceable())
+    val POTTED_FIDDLEHEAD = registerGenericBlock(Twilight.namespaceAndPath("potted_fiddlehead"), { p -> FlowerPotBlock(FIDDLEHEAD, p) }, Blocks.flowerPotProperties())
+    val MUSHGLOOM = registerGenericBlock(Twilight.namespaceAndPath("mushgloom"), {p -> MushgloomBlock(TwilightTreeConfigurations.RAINBOW_OAK, p)}, BlockBehaviour.Properties.of().mapColor(MapColor.GLOW_LICHEN).lightLevel{ 3 }.instabreak().noCollision().noOcclusion().pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS).replaceable())
+    val POTTED_MUSHGLOOM = registerGenericBlock(Twilight.namespaceAndPath("potted_mushgloom"), { p -> FlowerPotBlock(MUSHGLOOM, p) }, Blocks.flowerPotProperties())
 
     val TWILIGHT_OAK_SET = WoodSet(Twilight.namespaceAndPath("twilight_oak"), BlockSetType.OAK, WoodType.OAK, TwilightTreeGrowers.TWILIGHT_OAK, MapColor.WOOD, MapColor.PODZOL)
     val RAINBOW_OAK_LEAVES = registerGenericBlock(Twilight.namespaceAndPath("rainbow_oak_leaves"), { p -> TintedParticleLeavesBlock(0.01f, p) }, Blocks.leavesProperties(SoundType.GRASS))
@@ -73,9 +82,6 @@ object TwilightBlocks {
     val SORTWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("sortwood_chest"), { p -> TwilightChestBlock({ TwilightBlockEntityTypes.TWILIGHT_CHEST }, SoundEvents.CHEST_OPEN, SoundEvents.CHEST_CLOSE, p) }, chestProperties(SORTWOOD_SET.strippedWood))
     val TRAPPED_SORTWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("trapped_sortwood_chest"), ::TwilightTrappedChestBlock, chestProperties(SORTWOOD_SET.strippedWood))
     val SORTWOOD_CORE = registerGenericBlock(Twilight.namespaceAndPath("sortwood_core"), ::SortwoodCoreBlock, Blocks.logProperties(MapColor.PODZOL, MapColor.COLOR_BROWN, SoundType.WOOD))
-
-    val CORONATION_CARPET_CRUDE = registerGenericBlock(Twilight.namespaceAndPath("coronation_carpet"), ::ConnectedCarpetBlock, carpetProperties(MapColor.COLOR_RED))
-    val HEDGE = registerGenericBlock(Twilight.namespaceAndPath("hedge"), ::HedgeBlock, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).strength(2.0f, 3.0f).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY))
 
     @OnInitialize
     fun initialize() {

@@ -9,12 +9,15 @@ import io.autumn.twilight.specialrenderer.custom.LocklessChestSpecialRenderer
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.minecraft.client.data.models.BlockModelGenerators
+import net.minecraft.client.data.models.BlockModelGenerators.createSimpleBlock
+import net.minecraft.client.data.models.BlockModelGenerators.plainVariant
 import net.minecraft.client.data.models.ItemModelGenerators
 import net.minecraft.client.data.models.MultiVariant
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator
 import net.minecraft.client.data.models.model.ItemModelUtils
 import net.minecraft.client.data.models.model.ModelTemplates
 import net.minecraft.client.data.models.model.TextureMapping
+import net.minecraft.client.data.models.model.TextureSlot
 import net.minecraft.client.data.models.model.TexturedModel
 import net.minecraft.client.renderer.block.dispatch.Variant
 import net.minecraft.client.renderer.item.ItemModel
@@ -29,6 +32,8 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
         blockModelGenerators.createTrivialCube(TwilightBlocks.ROOT_BLOCK)
         blockModelGenerators.createTrivialCube(TwilightBlocks.LIVEROOT_BLOCK)
         createHedge(blockModelGenerators, "hedge")
+        createPlantWithAltPotted(blockModelGenerators,"fiddlehead", TwilightBlocks.FIDDLEHEAD, TwilightBlocks.POTTED_FIDDLEHEAD, BlockModelGenerators.PlantType.TINTED)
+        createPlantWithAltPotted(blockModelGenerators,"mushgloom", TwilightBlocks.MUSHGLOOM, TwilightBlocks.POTTED_MUSHGLOOM, BlockModelGenerators.PlantType.NOT_TINTED)
 
         createWoodSetModels(blockModelGenerators, TwilightBlocks.TWILIGHT_OAK_SET, -12012264,  TwilightBlocks.TWILIGHT_OAK_CHEST, TwilightBlocks.TRAPPED_TWILIGHT_OAK_CHEST, false)
         blockModelGenerators.createTintedLeaves(TwilightBlocks.RAINBOW_OAK_LEAVES, TexturedModel.LEAVES, 0xFFAA88CC.toInt())
@@ -104,6 +109,30 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
                 )
             )
         )
+    }
+
+    fun createPlantWithAltPotted(blockModelGenerators: BlockModelGenerators, name: String, standAlone: Block, potted: Block, plantType: BlockModelGenerators.PlantType) {
+        blockModelGenerators.registerSimpleItemModel(
+            standAlone.asItem(),
+            plantType.createItemModel(blockModelGenerators, standAlone)
+        )
+        createPlant(blockModelGenerators, name, standAlone, potted, plantType)
+    }
+
+    fun createPlant(blockModelGenerators: BlockModelGenerators, name: String, standAlone: Block, potted: Block, plantType: BlockModelGenerators.PlantType) {
+        blockModelGenerators.createCrossBlock(standAlone, plantType)
+
+        val textures = plantType.getPlantTextureMapping(standAlone)
+
+        val pottedTexture = Material(Twilight.namespaceAndPath("block/potted_${name}"))
+
+        textures.put(TextureSlot.PLANT, pottedTexture)
+
+        val model = plainVariant(
+            plantType.crossPot.create(potted, textures, blockModelGenerators.modelOutput)
+        )
+
+        blockModelGenerators.blockStateOutput.accept(createSimpleBlock(potted, model))
     }
 
     private fun createLocklessChest(block: Block, particle: Block, texture: Identifier, blockModelGenerators: BlockModelGenerators) {
