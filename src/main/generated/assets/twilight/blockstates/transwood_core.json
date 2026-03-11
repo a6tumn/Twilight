@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "twilight:block/transwood_core"
+    },
+    "active=true": {
+      "model": "twilight:block/transwood_core_on"
+    }
+  }
+}

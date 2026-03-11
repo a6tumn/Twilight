@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "twilight:block/minewood_core"
+    },
+    "active=true": {
+      "model": "twilight:block/minewood_core_on"
+    }
+  }
+}

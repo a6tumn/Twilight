@@ -19,9 +19,13 @@ class BlockLootTableProvider(output: FabricPackOutput, registriesFuture: Complet
         dropSelf(TwilightBlocks.TWILIGHT_MANGROVE_ROOT)
         createWoodSetDrops(TwilightBlocks.DARKWOOD_SET, TwilightBlocks.DARKWOOD_CHEST, TwilightBlocks.TRAPPED_DARKWOOD_CHEST)
         createWoodSetDrops(TwilightBlocks.TIMEWOOD_SET, TwilightBlocks.TIMEWOOD_CHEST, TwilightBlocks.TRAPPED_TIMEWOOD_CHEST)
+        dropOther(TwilightBlocks.TIMEWOOD_CORE, TwilightBlocks.TIMEWOOD_SET.log)
         createWoodSetDrops(TwilightBlocks.TRANSWOOD_SET, TwilightBlocks.TRANSWOOD_CHEST, TwilightBlocks.TRAPPED_TRANSWOOD_CHEST)
+        dropOther(TwilightBlocks.TRANSWOOD_CORE, TwilightBlocks.TRANSWOOD_SET.log)
         createWoodSetDrops(TwilightBlocks.MINEWOOD_SET, TwilightBlocks.MINEWOOD_CHEST, TwilightBlocks.TRAPPED_MINEWOOD_CHEST)
+        dropOther(TwilightBlocks.MINEWOOD_CORE, TwilightBlocks.MINEWOOD_SET.log)
         createWoodSetDrops(TwilightBlocks.SORTWOOD_SET, TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST)
+        dropOther(TwilightBlocks.SORTWOOD_CORE, TwilightBlocks.SORTWOOD_SET.log)
     }
 
     private fun createWoodSetDrops(woodSet: WoodSet, chestBlock: Block, trappedChestBlock: Block) {

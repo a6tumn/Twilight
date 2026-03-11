@@ -3,7 +3,7 @@ minecraft = "26.1-snapshot-11"
 loader = "0.18.4"
 fabric-api = "0.143.8+26.1"
 fabric-kotlin = "1.13.9+kotlin.2.3.10"
-carminite = "3.0.0"
+carminite = "3.2.0"
 torchberry = "0.0.3"
 
 [libraries]

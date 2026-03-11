@@ -1,11 +1,15 @@
 package io.autumn.twilight.block
 
-import io.autumn.carminite.properties.*
+import io.autumn.carminite.property.*
 import io.autumn.carminite.registry.*
 import io.autumn.carminite.wood.WoodSet
 import io.autumn.torchberry.annotations.OnInitialize
 import io.autumn.twilight.Twilight
 import io.autumn.twilight.block.custom.ConnectedCarpetBlock
+import io.autumn.twilight.block.custom.MinewoodCoreBlock
+import io.autumn.twilight.block.custom.SortwoodCoreBlock
+import io.autumn.twilight.block.custom.TimewoodCoreBlock
+import io.autumn.twilight.block.custom.TranswoodCoreBlock
 import io.autumn.twilight.block.custom.TwilightChestBlock
 import io.autumn.twilight.block.custom.TwilightTrappedChestBlock
 import io.autumn.twilight.blockentity.TwilightBlockEntityTypes
@@ -51,18 +55,22 @@ object TwilightBlocks {
     val TIMEWOOD_SET = WoodSet(Twilight.namespaceAndPath("timewood"), BlockSetType.OAK, WoodType.OAK, TwilightTreeGrowers.TIMEWOOD, MapColor.DIRT, MapColor.PODZOL)
     val TIMEWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("timewood_chest"), { p -> TwilightChestBlock({ TwilightBlockEntityTypes.TWILIGHT_CHEST }, SoundEvents.CHEST_OPEN, SoundEvents.CHEST_CLOSE, p) }, chestProperties(TIMEWOOD_SET.strippedWood))
     val TRAPPED_TIMEWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("trapped_timewood_chest"), ::TwilightTrappedChestBlock, chestProperties(TIMEWOOD_SET.strippedWood))
+    val TIMEWOOD_CORE = registerGenericBlock(Twilight.namespaceAndPath("timewood_core"), ::TimewoodCoreBlock, Blocks.logProperties(MapColor.DIRT, MapColor.PODZOL, SoundType.WOOD))
 
     val TRANSWOOD_SET = WoodSet(Twilight.namespaceAndPath("transwood"), BlockSetType.OAK, WoodType.OAK, TwilightTreeGrowers.TRANSWOOD, MapColor.WOOD, MapColor.PODZOL)
     val TRANSWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("transwood_chest"), { p -> TwilightChestBlock({ TwilightBlockEntityTypes.TWILIGHT_CHEST }, SoundEvents.CHEST_OPEN, SoundEvents.CHEST_CLOSE, p) }, chestProperties(TRANSWOOD_SET.strippedWood))
     val TRAPPED_TRANSWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("trapped_transwood_chest"), ::TwilightTrappedChestBlock, chestProperties(TRANSWOOD_SET.strippedWood))
+    val TRANSWOOD_CORE = registerGenericBlock(Twilight.namespaceAndPath("transwood_core"), ::TranswoodCoreBlock, Blocks.logProperties(MapColor.WOOD, MapColor.PODZOL, SoundType.WOOD))
 
     val MINEWOOD_SET = WoodSet(Twilight.namespaceAndPath("minewood"), BlockSetType.OAK, WoodType.OAK, TwilightTreeGrowers.MINEWOOD, MapColor.SAND, MapColor.QUARTZ)
     val MINEWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("minewood_chest"), { p -> TwilightChestBlock({ TwilightBlockEntityTypes.TWILIGHT_CHEST }, SoundEvents.CHEST_OPEN, SoundEvents.CHEST_CLOSE, p) }, chestProperties(MINEWOOD_SET.strippedWood))
     val TRAPPED_MINEWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("trapped_minewood_chest"), ::TwilightTrappedChestBlock, chestProperties(MINEWOOD_SET.strippedWood))
+    val MINEWOOD_CORE = registerGenericBlock(Twilight.namespaceAndPath("minewood_core"), ::MinewoodCoreBlock, Blocks.logProperties(MapColor.SAND, MapColor.QUARTZ, SoundType.WOOD))
 
     val SORTWOOD_SET = WoodSet(Twilight.namespaceAndPath("sortwood"), BlockSetType.OAK, WoodType.OAK, TwilightTreeGrowers.SORTWOOD, MapColor.PODZOL, MapColor.COLOR_BROWN)
     val SORTWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("sortwood_chest"), { p -> TwilightChestBlock({ TwilightBlockEntityTypes.TWILIGHT_CHEST }, SoundEvents.CHEST_OPEN, SoundEvents.CHEST_CLOSE, p) }, chestProperties(SORTWOOD_SET.strippedWood))
     val TRAPPED_SORTWOOD_CHEST = registerGenericBlock(Twilight.namespaceAndPath("trapped_sortwood_chest"), ::TwilightTrappedChestBlock, chestProperties(SORTWOOD_SET.strippedWood))
+    val SORTWOOD_CORE = registerGenericBlock(Twilight.namespaceAndPath("sortwood_core"), ::SortwoodCoreBlock, Blocks.logProperties(MapColor.PODZOL, MapColor.COLOR_BROWN, SoundType.WOOD))
 
     val CORONATION_CARPET_CRUDE = registerGenericBlock(Twilight.namespaceAndPath("coronation_carpet"), ::ConnectedCarpetBlock, carpetProperties(MapColor.COLOR_RED))
 

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "twilight:block/sortwood_core"
+    },
+    "active=true": {
+      "model": "twilight:block/sortwood_core_on"
+    }
+  }
+}

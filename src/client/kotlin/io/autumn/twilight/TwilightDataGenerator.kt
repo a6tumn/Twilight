@@ -22,6 +22,7 @@ object TwilightDataGenerator : DataGeneratorEntrypoint {
 		pack.addProvider(::RecipeProvider)
 		pack.addProvider(::EnchantmentProvider)
 		pack.addProvider(::DynamicRegistryProvider)
+		pack.addProvider(::SoundProvider)
 	}
 
 	override fun buildRegistry(registryBuilder: RegistrySetBuilder) {

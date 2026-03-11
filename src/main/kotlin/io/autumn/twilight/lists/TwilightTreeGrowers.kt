@@ -70,7 +70,7 @@ object TwilightTreeGrowers {
         0.1f,
         Optional.empty(),
         Optional.empty(),
-        Optional.empty(),
+        Optional.of(TwilightTreeConfigurations.TRANSWOOD),
         Optional.empty(),
         Optional.empty(),
         Optional.empty()
@@ -80,7 +80,7 @@ object TwilightTreeGrowers {
         0.1f,
         Optional.empty(),
         Optional.empty(),
-        Optional.empty(),
+        Optional.of(TwilightTreeConfigurations.MINEWOOD),
         Optional.empty(),
         Optional.empty(),
         Optional.empty()
@@ -90,7 +90,7 @@ object TwilightTreeGrowers {
         0.1f,
         Optional.empty(),
         Optional.empty(),
-        Optional.empty(),
+        Optional.of(TwilightTreeConfigurations.SORTWOOD),
         Optional.empty(),
         Optional.empty(),
         Optional.empty()

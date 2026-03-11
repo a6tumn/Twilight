@@ -3,10 +3,12 @@ package io.autumn.twilight.providers
 import io.autumn.carminite.feature.CarminiteBlockTags
 import io.autumn.carminite.wood.WoodSet
 import io.autumn.twilight.block.TwilightBlocks
+import io.autumn.twilight.lists.TwilightBlockTags
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider
 import net.minecraft.core.HolderLookup
 import net.minecraft.tags.BlockTags
+import net.minecraft.world.level.block.Blocks
 import java.util.concurrent.CompletableFuture
 
 class BlockTagsProvider(output: FabricPackOutput, registriesFuture: CompletableFuture<HolderLookup.Provider>) :  FabricTagsProvider.BlockTagsProvider(output, registriesFuture){
@@ -19,6 +21,20 @@ class BlockTagsProvider(output: FabricPackOutput, registriesFuture: CompletableF
         valueLookupBuilder(CarminiteBlockTags.WORLDGEN_REPLACEABLES)
             .addOptionalTag(BlockTags.LUSH_GROUND_REPLACEABLE)
             .addOptionalTag(BlockTags.REPLACEABLE_BY_TREES)
+
+        valueLookupBuilder(TwilightBlockTags.TIMEWOOD_CORE_EXCLUDED)
+            .add(Blocks.NETHER_PORTAL)
+
+        valueLookupBuilder(TwilightBlockTags.ORE_MAGNET_SAFE_REPLACE_BLOCK)
+            .addOptionalTag(BlockTags.DIRT)
+            .addOptionalTag(BlockTags.SAND)
+            .addOptionalTag(BlockTags.NYLIUM)
+            .addOptionalTag(BlockTags.BASE_STONE_OVERWORLD)
+            .addOptionalTag(BlockTags.BASE_STONE_NETHER)
+            .addOptionalTag(BlockTags.DEEPSLATE_ORE_REPLACEABLES)
+            .addOptionalTag(BlockTags.STONE_ORE_REPLACEABLES)
+            .add(TwilightBlocks.ROOT_BLOCK)
+            .add(TwilightBlocks.LIVEROOT_BLOCK)
 
         createWoodSetBlockTags(TwilightBlocks.TWILIGHT_OAK_SET)
         createWoodSetBlockTags(TwilightBlocks.CANOPY_SET)

@@ -22,9 +22,13 @@ class EnglishLangProvider(output: FabricPackOutput, registriesFuture: Completabl
         translationBuilder.add(TwilightBlocks.TWILIGHT_MANGROVE_ROOT, "Twilight Mangrove Root")
         createWoodSetTranslations(translationBuilder, "Darkwood", TwilightBlocks.DARKWOOD_SET, TwilightBlocks.DARKWOOD_CHEST, TwilightBlocks.TRAPPED_DARKWOOD_CHEST)
         createWoodSetTranslations(translationBuilder, "Timewood", TwilightBlocks.TIMEWOOD_SET, TwilightBlocks.TIMEWOOD_CHEST, TwilightBlocks.TRAPPED_TIMEWOOD_CHEST)
+        translationBuilder.add(TwilightBlocks.TIMEWOOD_CORE, "Timewood Core")
         createWoodSetTranslations(translationBuilder, "Transwood", TwilightBlocks.TRANSWOOD_SET, TwilightBlocks.TRANSWOOD_CHEST, TwilightBlocks.TRAPPED_TRANSWOOD_CHEST)
+        translationBuilder.add(TwilightBlocks.TRANSWOOD_CORE, "Transwood Core")
         createWoodSetTranslations(translationBuilder, "Minewood", TwilightBlocks.MINEWOOD_SET, TwilightBlocks.MINEWOOD_CHEST, TwilightBlocks.TRAPPED_MINEWOOD_CHEST)
+        translationBuilder.add(TwilightBlocks.MINEWOOD_CORE, "Minewood Core")
         createWoodSetTranslations(translationBuilder, "Sortwood", TwilightBlocks.SORTWOOD_SET, TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST)
+        translationBuilder.add(TwilightBlocks.SORTWOOD_CORE, "Sortwood Core")
         translationBuilder.add(TwilightBlocks.CORONATION_CARPET_CRUDE, "Coronation Carpet")
 
         translationBuilder.add(TwilightItemTags.TWILIGHT_OAK_LOGS_ITEM_TAG, "Twilight Oak Logs")

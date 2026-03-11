@@ -3,7 +3,7 @@
     "type": "minecraft:special",
     "base": "twilight:item/twilight_mangrove_chest",
     "model": {
-      "type": "minecraft:chest",
+      "type": "twilight:lockless_chest",
       "texture": "twilight:twilight_mangrove"
     }
   }

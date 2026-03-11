@@ -1,11 +1,18 @@
 package io.autumn.twilight.bootstrap
 
+import io.autumn.carminite.tree.config.CarminiteBranchesConfig
+import io.autumn.carminite.tree.config.CarminiteTreeFeatureConfig
+import io.autumn.carminite.tree.decorator.BlockInsertionDecorator
 import io.autumn.twilight.Twilight
-import io.autumn.carminite.tree.decorators.TreeRootsDecorator
-import io.autumn.carminite.tree.trunkplacers.*
-import io.autumn.carminite.tree.trunkplacers.config.*
-import io.autumn.carminite.tree.foliageplacers.*
+import io.autumn.carminite.tree.decorator.TreeRootsDecorator
+import io.autumn.carminite.tree.trunkplacer.*
+import io.autumn.carminite.tree.foliageplacer.*
 import io.autumn.twilight.block.TwilightBlocks
+import io.autumn.twilight.configuredfeatures.tree.MinewoodFeature
+import io.autumn.twilight.configuredfeatures.tree.TimewoodFeature
+import net.minecraft.core.Direction
+import net.minecraft.core.Registry
+import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.worldgen.BootstrapContext
 import net.minecraft.data.worldgen.features.FeatureUtils
@@ -14,6 +21,7 @@ import net.minecraft.resources.ResourceKey
 import net.minecraft.util.random.WeightedList
 import net.minecraft.util.valueproviders.ConstantInt
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.RotatedPillarBlock
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 import net.minecraft.world.level.levelgen.feature.Feature
@@ -39,6 +47,11 @@ object TwilightTreeConfigurations {
     val TWILIGHT_MANGROVE: ResourceKey<ConfiguredFeature<*, *>> = createKey("twilight_mangrove")
     val DARKWOOD: ResourceKey<ConfiguredFeature<*, *>> = createKey("darkwood")
     val TIMEWOOD: ResourceKey<ConfiguredFeature<*, *>> = createKey("timewood")
+    val TIMEWOOD_FEATURE = Registry.register(BuiltInRegistries.FEATURE, Twilight.namespaceAndPath("timewood_feature"), TimewoodFeature(CarminiteTreeFeatureConfig.CODEC))
+    val TRANSWOOD: ResourceKey<ConfiguredFeature<*, *>> = createKey("transwood")
+    val MINEWOOD: ResourceKey<ConfiguredFeature<*, *>> = createKey("minewood")
+    val MINEWOOD_FEATURE = Registry.register(BuiltInRegistries.FEATURE, Twilight.namespaceAndPath("minewood_feature"), MinewoodFeature(CarminiteTreeFeatureConfig.CODEC))
+    val SORTWOOD: ResourceKey<ConfiguredFeature<*, *>> = createKey("sortwood")
 
     private fun createStraightBlobTree(oakLog: Block, oakLeaves: Block, baseHeight: Int, heightRandA: Int, heightRandB: Int, blobRadius: Int): TreeConfiguration.TreeConfigurationBuilder =
         TreeConfiguration.TreeConfigurationBuilder(
@@ -90,7 +103,7 @@ object TwilightTreeConfigurations {
             BlockStateProvider.simple(TwilightBlocks.CANOPY_SET.log),
             BranchingTrunkPlacer(
                 20, 5, 5, 12,
-                BranchesConfig(BlockStateProvider.simple(TwilightBlocks.CANOPY_SET.wood), 3, 1, 10.0, 1.0, 0.3, 0.2),
+                CarminiteBranchesConfig(BlockStateProvider.simple(TwilightBlocks.CANOPY_SET.wood), 3, 1, 10.0, 1.0, 0.3, 0.2),
                 perpendicularBranches = false,
                 preventExposedRoot = true
             ),
@@ -125,7 +138,7 @@ object TwilightTreeConfigurations {
             TrunkRiser(
                 4, 7, 4, 0, BranchingTrunkPlacer(
                     7, 4, 0, 6,
-                    BranchesConfig(
+                    CarminiteBranchesConfig(
                         BlockStateProvider.simple(TwilightBlocks.TWILIGHT_MANGROVE_SET.wood),
                         0,
                         3,
@@ -166,7 +179,7 @@ object TwilightTreeConfigurations {
                 1,
                 1,
                 6,
-                BranchesConfig(
+                CarminiteBranchesConfig(
                     BlockStateProvider.simple(TwilightBlocks.DARKWOOD_SET.wood),
                     4,
                     0,
@@ -196,41 +209,63 @@ object TwilightTreeConfigurations {
             )
         )
 
-    //Try creating smaller and more distinct leaf clusters
-    private fun createTimeWood(): TreeConfiguration.TreeConfigurationBuilder {
-        return TreeConfiguration.TreeConfigurationBuilder(
+    private fun createTimeWood(): CarminiteTreeFeatureConfig.Builder {
+        return CarminiteTreeFeatureConfig.Builder(
             BlockStateProvider.simple(TwilightBlocks.TIMEWOOD_SET.log),
-            MegaTrunkPlacer(
-                10,
-                1,
-                1,
-                7,
-                BranchesConfig(
-                    BlockStateProvider.simple(TwilightBlocks.TIMEWOOD_SET.wood),
-                    6,
-                    1,
-                    5.0,
-                    1.0,
-                    0.3,
-                    0.2
+            BlockStateProvider.simple(TwilightBlocks.TIMEWOOD_SET.leaves),
+            BlockStateProvider.simple(TwilightBlocks.TIMEWOOD_SET.wood),
+            BlockStateProvider.simple(TwilightBlocks.ROOT_BLOCK)
+        )
+    }
+
+    private fun createTransWood(): TreeConfiguration.TreeConfigurationBuilder {
+        return TreeConfiguration.TreeConfigurationBuilder(
+            BlockStateProvider.simple(TwilightBlocks.TRANSWOOD_SET.log),
+            BranchingTrunkPlacer(6, 5, 5, 7,
+                CarminiteBranchesConfig(
+                    BlockStateProvider.simple(TwilightBlocks.TRANSWOOD_SET.wood),
+                    3, 1, 10.0, 1.0, 0.3, 0.2
                 ),
                 perpendicularBranches = false,
                 preventExposedRoot = false
             ),
-            BlockStateProvider.simple(TwilightBlocks.TIMEWOOD_SET.leaves),
-            LeafSpheroidFoliagePlacer(2.5f, 2.5f, ConstantInt.of(0), 2, 4, 0f, (24 * 1.5f).toInt()),
-            TwoLayersFeatureSize(4, 1, 1)
+            BlockStateProvider.simple(TwilightBlocks.TRANSWOOD_SET.leaves),
+            LeafSpheroidFoliagePlacer(4.5f, 1.5f, ConstantInt.of(0), 1, 0, -0.25f, 0
+            ),
+            TwoLayersFeatureSize(4, 1, 5)
         ).decorators(
             listOf(
-                TreeRootsDecorator(
+                BlockInsertionDecorator(
                     3,
-                    1,
-                    3,
-                    BlockStateProvider.simple(TwilightBlocks.ROOT_BLOCK.defaultBlockState()),
-                    1
+                    BlockStateProvider.simple(TwilightBlocks.TRANSWOOD_CORE.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)))
+            )
+        ).ignoreVines()
+    }
+
+    private fun createMineWood(): CarminiteTreeFeatureConfig.Builder {
+        return CarminiteTreeFeatureConfig.Builder(
+            BlockStateProvider.simple(TwilightBlocks.MINEWOOD_SET.log),
+            BlockStateProvider.simple(TwilightBlocks.MINEWOOD_SET.leaves),
+            BlockStateProvider.simple(TwilightBlocks.MINEWOOD_SET.wood),
+            BlockStateProvider.simple(TwilightBlocks.ROOT_BLOCK)
+        )
+    }
+
+    private fun createSortWood(): TreeConfiguration.TreeConfigurationBuilder {
+        return TreeConfiguration.TreeConfigurationBuilder(
+            BlockStateProvider.simple(TwilightBlocks.SORTWOOD_SET.log),
+            StraightTrunkPlacer(3, 0, 0),
+            BlockStateProvider.simple(TwilightBlocks.SORTWOOD_SET.leaves),
+            LeafSpheroidFoliagePlacer(1.5f, 2.25f, ConstantInt.of(0), 1, 0, 0.5f, 0),
+            TwoLayersFeatureSize(1, 1, 1)
+        ).decorators(
+            listOf(
+                BlockInsertionDecorator(
+                    2,
+                    BlockStateProvider.simple(TwilightBlocks.SORTWOOD_CORE.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
                 )
             )
-        )
+        ).ignoreVines()
     }
 
     private fun createKey(name: String): ResourceKey<ConfiguredFeature<*, *>> = ResourceKey.create(
@@ -245,6 +280,9 @@ object TwilightTreeConfigurations {
         FeatureUtils.register(context, CANOPY, Feature.TREE, createCanopy().build())
         FeatureUtils.register(context, TWILIGHT_MANGROVE, Feature.TREE, createTwilightMangrove().build())
         FeatureUtils.register(context, DARKWOOD, Feature.TREE, createDarkWood().build())
-        FeatureUtils.register(context, TIMEWOOD, Feature.TREE, createTimeWood().build())
+        FeatureUtils.register(context, TIMEWOOD, TIMEWOOD_FEATURE, createTimeWood().build())
+        FeatureUtils.register(context, TRANSWOOD, Feature.TREE, createTransWood().build())
+        FeatureUtils.register(context, SORTWOOD, Feature.TREE, createSortWood().build())
+        FeatureUtils.register(context, MINEWOOD, MINEWOOD_FEATURE, createMineWood().build())
     }
 }
