@@ -26,6 +26,9 @@ class BlockLootTableProvider(output: FabricPackOutput, registriesFuture: Complet
         dropOther(TwilightBlocks.MINEWOOD_CORE, TwilightBlocks.MINEWOOD_SET.log)
         createWoodSetDrops(TwilightBlocks.SORTWOOD_SET, TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST)
         dropOther(TwilightBlocks.SORTWOOD_CORE, TwilightBlocks.SORTWOOD_SET.log)
+
+        dropSelf(TwilightBlocks.CORONATION_CARPET_CRUDE)
+        dropSelf(TwilightBlocks.HEDGE)
     }
 
     private fun createWoodSetDrops(woodSet: WoodSet, chestBlock: Block, trappedChestBlock: Block) {

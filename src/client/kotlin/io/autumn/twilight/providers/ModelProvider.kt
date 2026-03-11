@@ -3,6 +3,7 @@ package io.autumn.twilight.providers
 import io.autumn.carminite.wood.WoodSet
 import io.autumn.twilight.Twilight
 import io.autumn.twilight.block.TwilightBlocks
+import io.autumn.twilight.block.custom.HedgeBlock
 import io.autumn.twilight.block.custom.MagicLogCoreBlock
 import io.autumn.twilight.specialrenderer.custom.LocklessChestSpecialRenderer
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider
@@ -27,6 +28,7 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
     override fun generateBlockStateModels(blockModelGenerators: BlockModelGenerators) {
         blockModelGenerators.createTrivialCube(TwilightBlocks.ROOT_BLOCK)
         blockModelGenerators.createTrivialCube(TwilightBlocks.LIVEROOT_BLOCK)
+        createHedge(blockModelGenerators, "hedge")
 
         createWoodSetModels(blockModelGenerators, TwilightBlocks.TWILIGHT_OAK_SET, -12012264,  TwilightBlocks.TWILIGHT_OAK_CHEST, TwilightBlocks.TRAPPED_TWILIGHT_OAK_CHEST, false)
         blockModelGenerators.createTintedLeaves(TwilightBlocks.RAINBOW_OAK_LEAVES, TexturedModel.LEAVES, 0xFFAA88CC.toInt())
@@ -68,7 +70,7 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
         }
     }
 
-    fun createMagicLogCore(blockModelGenerators: BlockModelGenerators, woodName: String, coreBlock: Block) {
+    private fun createMagicLogCore(blockModelGenerators: BlockModelGenerators, woodName: String, coreBlock: Block) {
         val mappingOff = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodName}_core")), Material(Twilight.namespaceAndPath("block/${woodName}_log_top")))
         val mappingOn = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodName}_core_on")), Material(Twilight.namespaceAndPath("block/${woodName}_log_top")))
 
@@ -79,6 +81,24 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
             MultiVariantGenerator.dispatch(coreBlock).with(
                 BlockModelGenerators.createBooleanModelDispatch(
                     MagicLogCoreBlock.ACTIVE,
+                    MultiVariant(WeightedList.of(Variant(onId))),
+                    MultiVariant(WeightedList.of(Variant(offId)))
+                )
+            )
+        )
+    }
+
+    private fun createHedge(blockModelGenerators: BlockModelGenerators, name: String) {
+        val mappingOff = TextureMapping.cube(Material(Twilight.namespaceAndPath("block/${name}")))
+        val mappingOn = TextureMapping.cube(Material(Twilight.namespaceAndPath("block/${name}_rose")))
+
+        val offId = ModelTemplates.CUBE_ALL.create(TwilightBlocks.HEDGE, mappingOff, blockModelGenerators.modelOutput)
+        val onId = blockModelGenerators.createSuffixedVariant(TwilightBlocks.HEDGE, "_rose", ModelTemplates.CUBE_ALL) { mappingOn }
+
+        blockModelGenerators.blockStateOutput.accept(
+            MultiVariantGenerator.dispatch(TwilightBlocks.HEDGE).with(
+                BlockModelGenerators.createBooleanModelDispatch(
+                    HedgeBlock.ROSE,
                     MultiVariant(WeightedList.of(Variant(onId))),
                     MultiVariant(WeightedList.of(Variant(offId)))
                 )

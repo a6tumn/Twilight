@@ -6,6 +6,7 @@ import io.autumn.carminite.wood.WoodSet
 import io.autumn.torchberry.annotations.OnInitialize
 import io.autumn.twilight.Twilight
 import io.autumn.twilight.block.custom.ConnectedCarpetBlock
+import io.autumn.twilight.block.custom.HedgeBlock
 import io.autumn.twilight.block.custom.MinewoodCoreBlock
 import io.autumn.twilight.block.custom.SortwoodCoreBlock
 import io.autumn.twilight.block.custom.TimewoodCoreBlock
@@ -26,6 +27,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
 import net.minecraft.world.level.block.state.properties.WoodType
 import net.minecraft.world.level.material.MapColor
+import net.minecraft.world.level.material.PushReaction
 
 object TwilightBlocks {
 
@@ -73,6 +75,7 @@ object TwilightBlocks {
     val SORTWOOD_CORE = registerGenericBlock(Twilight.namespaceAndPath("sortwood_core"), ::SortwoodCoreBlock, Blocks.logProperties(MapColor.PODZOL, MapColor.COLOR_BROWN, SoundType.WOOD))
 
     val CORONATION_CARPET_CRUDE = registerGenericBlock(Twilight.namespaceAndPath("coronation_carpet"), ::ConnectedCarpetBlock, carpetProperties(MapColor.COLOR_RED))
+    val HEDGE = registerGenericBlock(Twilight.namespaceAndPath("hedge"), ::HedgeBlock, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).strength(2.0f, 3.0f).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY))
 
     @OnInitialize
     fun initialize() {

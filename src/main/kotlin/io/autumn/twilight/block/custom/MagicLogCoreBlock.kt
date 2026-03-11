@@ -85,6 +85,6 @@ abstract class MagicLogCoreBlock(properties: Properties) : RotatedPillarBlock(
     protected open fun playSound(level: Level, pos: BlockPos, rand: RandomSource) {}
 
     companion object {
-        val ACTIVE: BooleanProperty = BooleanProperty.create("active")
+        val ACTIVE = BooleanProperty.create("active")
     }
 }

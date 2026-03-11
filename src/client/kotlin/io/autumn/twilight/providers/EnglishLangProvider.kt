@@ -30,6 +30,7 @@ class EnglishLangProvider(output: FabricPackOutput, registriesFuture: Completabl
         createWoodSetTranslations(translationBuilder, "Sortwood", TwilightBlocks.SORTWOOD_SET, TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST)
         translationBuilder.add(TwilightBlocks.SORTWOOD_CORE, "Sortwood Core")
         translationBuilder.add(TwilightBlocks.CORONATION_CARPET_CRUDE, "Coronation Carpet")
+        translationBuilder.add(TwilightBlocks.HEDGE, "Hedge")
 
         translationBuilder.add(TwilightItemTags.TWILIGHT_OAK_LOGS_ITEM_TAG, "Twilight Oak Logs")
         translationBuilder.add(TwilightItemTags.CANOPY_LOGS_ITEM_TAG, "Canopy Logs")

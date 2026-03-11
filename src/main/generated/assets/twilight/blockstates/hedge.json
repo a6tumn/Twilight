@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "rose=false": {
+      "model": "twilight:block/hedge"
+    },
+    "rose=true": {
+      "model": "twilight:block/hedge_rose"
+    }
+  }
+}
