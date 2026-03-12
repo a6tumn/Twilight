@@ -15,6 +15,7 @@ import net.minecraft.client.data.models.ItemModelGenerators
 import net.minecraft.client.data.models.MultiVariant
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator
 import net.minecraft.client.data.models.model.ItemModelUtils
+import net.minecraft.client.data.models.model.ModelLocationUtils
 import net.minecraft.client.data.models.model.ModelTemplates
 import net.minecraft.client.data.models.model.TextureMapping
 import net.minecraft.client.data.models.model.TextureSlot
@@ -34,6 +35,11 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
         createHedge(blockModelGenerators, "hedge")
         createPlantWithAltPotted(blockModelGenerators,"fiddlehead", TwilightBlocks.FIDDLEHEAD, TwilightBlocks.POTTED_FIDDLEHEAD, BlockModelGenerators.PlantType.TINTED)
         createPlantWithAltPotted(blockModelGenerators,"mushgloom", TwilightBlocks.MUSHGLOOM, TwilightBlocks.POTTED_MUSHGLOOM, BlockModelGenerators.PlantType.NOT_TINTED)
+        blockModelGenerators.blockStateOutput.accept(createSimpleBlock(TwilightBlocks.MAYAPPLE, MultiVariant(WeightedList.of(Variant(ModelLocationUtils.getModelLocation(TwilightBlocks.MAYAPPLE))))))
+        blockModelGenerators.blockStateOutput.accept(createSimpleBlock(TwilightBlocks.POTTED_MAYAPPLE, MultiVariant(WeightedList.of(Variant(ModelLocationUtils.getModelLocation(TwilightBlocks.POTTED_MAYAPPLE))))))
+        blockModelGenerators.createFlatItemModel(TwilightBlocks.MAYAPPLE.asItem())
+        //blockModelGenerators.blockStateOutput.accept(createSimpleBlock(TwilightBlocks.FIREFLY, MultiVariant(WeightedList.of(Variant(ModelLocationUtils.getModelLocation(TwilightBlocks.FIREFLY))))))
+        //blockModelGenerators.createFlatItemModel(TwilightBlocks.FIREFLY.asItem())
 
         createWoodSetModels(blockModelGenerators, TwilightBlocks.TWILIGHT_OAK_SET, -12012264,  TwilightBlocks.TWILIGHT_OAK_CHEST, TwilightBlocks.TRAPPED_TWILIGHT_OAK_CHEST, false)
         blockModelGenerators.createTintedLeaves(TwilightBlocks.RAINBOW_OAK_LEAVES, TexturedModel.LEAVES, 0xFFAA88CC.toInt())
@@ -58,6 +64,8 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
         createWoodSetModels(blockModelGenerators, TwilightBlocks.SORTWOOD_SET, 3558403,  TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST, true)
         createMagicLogCore(blockModelGenerators,"sortwood", TwilightBlocks.SORTWOOD_CORE)
     }
+
+    override fun generateItemModels(itemModelGenerators: ItemModelGenerators) {}
 
     private fun createWoodSetModels(blockModelGenerators: BlockModelGenerators, woodSet: WoodSet, leavesTintColor: Int, chestBlock: Block, trappedChestBlock: Block, lockless: Boolean) {
         blockModelGenerators.woodProvider(woodSet.log).logWithHorizontal(woodSet.log).wood(woodSet.wood)
@@ -144,6 +152,4 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
 
         blockModelGenerators.itemModelOutput.accept(chestItem, plainModel)
     }
-
-    override fun generateItemModels(itemModelGenerators: ItemModelGenerators) {}
 }

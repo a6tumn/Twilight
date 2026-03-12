@@ -31,6 +31,8 @@ class BlockLootTableProvider(output: FabricPackOutput, registriesFuture: Complet
         dropSelf(TwilightBlocks.HEDGE)
         dropSelf(TwilightBlocks.FIDDLEHEAD)
         dropSelf(TwilightBlocks.MUSHGLOOM)
+        dropSelf(TwilightBlocks.MAYAPPLE)
+        dropSelf(TwilightBlocks.FIREFLY)
     }
 
     private fun createWoodSetDrops(woodSet: WoodSet, chestBlock: Block, trappedChestBlock: Block) {

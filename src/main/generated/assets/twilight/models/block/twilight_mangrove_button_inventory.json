@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/button_inventory",
-  "textures": {
-    "texture": "twilight:block/twilight_mangrove_planks"
-  }
-}

@@ -10,6 +10,7 @@ object TwilightBlockEntityRenderers {
     init {
         registerGenericBlockEntityRenderer(TwilightBlockEntityTypes.TWILIGHT_CHEST, ::TwilightChestRenderer)
         registerGenericBlockEntityRenderer(TwilightBlockEntityTypes.TWILIGHT_TRAPPED_CHEST, ::TwilightChestRenderer)
+
     }
 
     @OnInitializeClient

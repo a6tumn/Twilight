@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "twilight:block/canopy_planks",
-    "side": "twilight:block/canopy_planks",
-    "top": "twilight:block/canopy_planks"
-  }
-}

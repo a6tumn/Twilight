@@ -30,6 +30,8 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightBlocks.LIVEROOT_BLOCK)
                     entries.accept(TwilightBlocks.FIDDLEHEAD)
                     entries.accept(TwilightBlocks.MUSHGLOOM)
+                    entries.accept(TwilightBlocks.MAYAPPLE)
+                    entries.accept(TwilightBlocks.FIREFLY)
 
                     entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.log)
                     entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.strippedLog)

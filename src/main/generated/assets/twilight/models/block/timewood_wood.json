@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "twilight:block/timewood_log",
-    "side": "twilight:block/timewood_log"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "twilight:block/timewood_planks",
-    "side": "twilight:block/timewood_planks",
-    "top": "twilight:block/timewood_planks"
-  }
-}

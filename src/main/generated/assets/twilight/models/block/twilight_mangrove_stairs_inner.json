@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "twilight:block/twilight_mangrove_planks",
-    "side": "twilight:block/twilight_mangrove_planks",
-    "top": "twilight:block/twilight_mangrove_planks"
-  }
-}

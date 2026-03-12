@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "twilight:block/canopy_log",
-    "side": "twilight:block/canopy_log"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_right_open",
-  "textures": {
-    "bottom": "twilight:block/twilight_mangrove_door_bottom",
-    "top": "twilight:block/twilight_mangrove_door_top"
-  }
-}

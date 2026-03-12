@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/template_chest",
-  "textures": {
-    "particle": "twilight:block/twilight_oak_planks"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "twilight:block/sortwood_log_top",
-    "side": "twilight:block/sortwood_log"
-  }
-}

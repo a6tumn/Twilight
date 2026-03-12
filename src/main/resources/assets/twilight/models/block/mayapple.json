@@ -1,0 +1,29 @@
+{
+  "parent": "block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "stem": "twilight:block/mayapple_side",
+    "leaf": "twilight:block/mayapple",
+    "particle": "minecraft:block/moss_block"
+  },
+  "elements": [
+    {
+      "from": [7.5, 0, 7.5],
+      "to": [8.5, 6, 8.5],
+      "faces": {
+        "north": {"uv": [8, 10, 9, 16], "texture": "#stem"},
+        "east": {"uv": [8, 10, 9, 16], "texture": "#stem"},
+        "south": {"uv": [8, 10, 9, 16], "texture": "#stem"},
+        "west": {"uv": [8, 10, 9, 16], "texture": "#stem"}
+      }
+    },
+    {
+      "from": [3.5, 6, 3.5],
+      "to": [12.5, 6, 12.5],
+      "faces": {
+        "up": {"uv": [4, 4, 13, 13], "texture": "#leaf"},
+        "down": {"uv": [4, 4, 13, 13], "texture": "#leaf"}
+      }
+    }
+  ]
+}
