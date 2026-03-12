@@ -5,9 +5,11 @@ import io.autumn.carminite.tree.config.CarminiteTreeFeatureConfig
 import io.autumn.carminite.tree.decorator.BlockInsertionDecorator
 import io.autumn.twilight.Twilight
 import io.autumn.carminite.tree.decorator.TreeRootsDecorator
+import io.autumn.carminite.tree.decorator.TrunkSideDecorator
 import io.autumn.carminite.tree.trunkplacer.*
 import io.autumn.carminite.tree.foliageplacer.*
 import io.autumn.twilight.block.TwilightBlocks
+import io.autumn.twilight.block.custom.CritterBlock
 import io.autumn.twilight.configuredfeatures.tree.MinewoodFeature
 import io.autumn.twilight.configuredfeatures.tree.TimewoodFeature
 import net.minecraft.core.Direction
@@ -128,6 +130,11 @@ object TwilightTreeConfigurations {
                         .add(TwilightBlocks.LIVEROOT_BLOCK.defaultBlockState(), 1).build()
                 ),
                 1
+            ),
+            TrunkSideDecorator(
+                4,
+                0.5f,
+                BlockStateProvider.simple(TwilightBlocks.FIREFLY.defaultBlockState().setValue(CritterBlock.FACING, Direction.NORTH),)
             )
         )
         ).ignoreVines()

@@ -6,7 +6,8 @@ import io.autumn.twilight.Twilight
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes
 
 object TwilightParticles{
-    val FIREFLY_PARTICLE = registerGenericParticle(Twilight.namespaceAndPath("firefly_particle"), FabricParticleTypes.simple())
+    val FIREFLY_PARTICLE =
+        registerGenericParticle(Twilight.namespaceAndPath("firefly_particle"), FabricParticleTypes.simple())
 
     @OnInitialize
     fun initialize() {

@@ -38,8 +38,6 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
         blockModelGenerators.blockStateOutput.accept(createSimpleBlock(TwilightBlocks.MAYAPPLE, MultiVariant(WeightedList.of(Variant(ModelLocationUtils.getModelLocation(TwilightBlocks.MAYAPPLE))))))
         blockModelGenerators.blockStateOutput.accept(createSimpleBlock(TwilightBlocks.POTTED_MAYAPPLE, MultiVariant(WeightedList.of(Variant(ModelLocationUtils.getModelLocation(TwilightBlocks.POTTED_MAYAPPLE))))))
         blockModelGenerators.createFlatItemModel(TwilightBlocks.MAYAPPLE.asItem())
-        //blockModelGenerators.blockStateOutput.accept(createSimpleBlock(TwilightBlocks.FIREFLY, MultiVariant(WeightedList.of(Variant(ModelLocationUtils.getModelLocation(TwilightBlocks.FIREFLY))))))
-        //blockModelGenerators.createFlatItemModel(TwilightBlocks.FIREFLY.asItem())
 
         createWoodSetModels(blockModelGenerators, TwilightBlocks.TWILIGHT_OAK_SET, -12012264,  TwilightBlocks.TWILIGHT_OAK_CHEST, TwilightBlocks.TRAPPED_TWILIGHT_OAK_CHEST, false)
         blockModelGenerators.createTintedLeaves(TwilightBlocks.RAINBOW_OAK_LEAVES, TexturedModel.LEAVES, 0xFFAA88CC.toInt())

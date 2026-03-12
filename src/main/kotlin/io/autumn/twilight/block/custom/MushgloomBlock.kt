@@ -16,5 +16,5 @@ class MushgloomBlock(feature: ResourceKey<ConfiguredFeature<*, *>>, properties: 
     }
 
     override fun isValidBonemealTarget(level: LevelReader, pos: BlockPos, state: BlockState): Boolean = false
-    override fun getVisualShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape = boundingBox
+    override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape = boundingBox
 }

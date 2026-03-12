@@ -10,11 +10,11 @@ import net.minecraft.world.phys.shapes.VoxelShape
 
 class MayappleBlock(properties: Properties) : BushBlock(properties) {
     companion object {
-        private val boundingBox = box(4.0, 0.0, 4.0, 13.0, 6.0, 13.0)
+        private val boundingBox = box(3.5, 0.0, 3.5, 12.5, 6.0, 12.5)
         val CODEC = simpleCodec(::MayappleBlock)
     }
 
-    override fun getVisualShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape = boundingBox
+    override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape = boundingBox
 
     @Suppress("UNCHECKED_CAST")
     override fun codec(): MapCodec<BushBlock> = CODEC as MapCodec<BushBlock>
