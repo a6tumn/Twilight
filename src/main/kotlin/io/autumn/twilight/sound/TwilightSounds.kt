@@ -9,6 +9,7 @@ object TwilightSounds {
     val TRANSWOOD_CORE_ACTIVE = registerGenericSoundEvent(Twilight.namespaceAndPath("transwood_core_active"))
     val MINEWOOD_CORE_ACTIVE = registerGenericSoundEvent(Twilight.namespaceAndPath("minewood_core_active"))
     val SORTWOOD_CORE_ACTIVE = registerGenericSoundEvent(Twilight.namespaceAndPath("sortwood_core_active"))
+    val CICADA_AMBIENT = registerGenericSoundEvent(Twilight.namespaceAndPath("cicada_ambient"))
 
     @OnInitialize
     fun initialize() {

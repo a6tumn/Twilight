@@ -22,6 +22,7 @@ class EnglishLangProvider(output: FabricPackOutput, registriesFuture: Completabl
         translationBuilder.add(TwilightBlocks.MAYAPPLE, "Mayapple")
         translationBuilder.add(TwilightBlocks.POTTED_MAYAPPLE, "Potted Mayapple")
         translationBuilder.add(TwilightBlocks.FIREFLY, "Firefly")
+        translationBuilder.add(TwilightBlocks.CICADA, "Cicada")
 
         createWoodSetTranslations(translationBuilder, "Twilight Oak", TwilightBlocks.TWILIGHT_OAK_SET, TwilightBlocks.TWILIGHT_OAK_CHEST, TwilightBlocks.TRAPPED_TWILIGHT_OAK_CHEST)
         translationBuilder.add(TwilightBlocks.RAINBOW_OAK_LEAVES, "Rainbow Oak Leaves")

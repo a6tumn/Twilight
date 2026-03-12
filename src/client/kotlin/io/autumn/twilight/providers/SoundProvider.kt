@@ -1,5 +1,6 @@
 package io.autumn.twilight.providers
 
+import io.autumn.twilight.Twilight
 import io.autumn.twilight.sound.TwilightSounds
 import net.fabricmc.fabric.api.client.datagen.v1.builder.SoundTypeBuilder
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricSoundsProvider
@@ -29,6 +30,11 @@ class SoundProvider(output: PackOutput, registriesFuture: CompletableFuture<Hold
             SoundTypeBuilder.of(TwilightSounds.SORTWOOD_CORE_ACTIVE)
                 .sound(SoundTypeBuilder.RegistrationBuilder.ofEvent(SoundEvents.PISTON_EXTEND))
                 .subtitle("Sortwood Core Active")
+        )
+        soundExporter.add(TwilightSounds.CICADA_AMBIENT,
+            SoundTypeBuilder.of(TwilightSounds.CICADA_AMBIENT)
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Twilight.namespaceAndPath("cicada_ambient")))
+                .subtitle("Cicada Ambient")
         )
     }
 

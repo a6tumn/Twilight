@@ -5,6 +5,7 @@ import io.autumn.carminite.registry.*
 import io.autumn.carminite.wood.WoodSet
 import io.autumn.torchberry.annotations.OnInitialize
 import io.autumn.twilight.Twilight
+import io.autumn.twilight.block.custom.CicadaBlock
 import io.autumn.twilight.block.custom.ConnectedCarpetBlock
 import io.autumn.twilight.block.custom.FiddleheadBlock
 import io.autumn.twilight.block.custom.FireflyBlock
@@ -47,6 +48,7 @@ object TwilightBlocks {
     val MAYAPPLE = registerGenericBlock(Twilight.namespaceAndPath("mayapple"), ::MayappleBlock, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).ignitedByLava().instabreak().noCollision().noOcclusion().pushReaction(PushReaction.DESTROY).sound(SoundType.GRASS).replaceable())
     val POTTED_MAYAPPLE = registerGenericBlock(Twilight.namespaceAndPath("potted_mayapple"), { p -> FlowerPotBlock(MAYAPPLE, p) }, Blocks.flowerPotProperties())
     val FIREFLY = registerGenericBlock(Twilight.namespaceAndPath("firefly"), ::FireflyBlock, BlockBehaviour.Properties.of().instabreak().lightLevel { state -> state.getValue(FireflyBlock.LIGHT) }.noCollision().noTerrainParticles().pushReaction(PushReaction.DESTROY).sound(SoundType.SLIME_BLOCK))
+    val CICADA = registerGenericBlock(Twilight.namespaceAndPath("cicada"), ::CicadaBlock, BlockBehaviour.Properties.of().instabreak().randomTicks().noCollision().noTerrainParticles().pushReaction(PushReaction.DESTROY).sound(SoundType.SLIME_BLOCK))
 
     val TWILIGHT_OAK_SET = WoodSet(Twilight.namespaceAndPath("twilight_oak"), BlockSetType.OAK, WoodType.OAK, TwilightTreeGrowers.TWILIGHT_OAK, MapColor.WOOD, MapColor.PODZOL)
     val RAINBOW_OAK_LEAVES = registerGenericBlock(Twilight.namespaceAndPath("rainbow_oak_leaves"), { p -> TintedParticleLeavesBlock(0.01f, p) }, Blocks.leavesProperties(SoundType.GRASS))

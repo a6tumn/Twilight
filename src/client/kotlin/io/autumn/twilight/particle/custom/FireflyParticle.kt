@@ -1,5 +1,6 @@
 package io.autumn.twilight.particle.custom
 
+import io.autumn.twilight.block.custom.FireflyBlock
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.particle.Particle
 import net.minecraft.client.particle.ParticleProvider
@@ -17,54 +18,51 @@ class FireflyParticle(level: ClientLevel, x: Double, y: Double, z: Double, xa: D
     override fun tick() {
         super.tick()
 
-        if (!level.getBlockState(BlockPos.containing(x, y, z)).isAir) {
+        val blockState = level.getBlockState(BlockPos.containing(x, y, z))
+        if (!blockState.isAir && blockState.block !is FireflyBlock) {
             remove()
-        } else {
-            setAlpha(getFadeAmount(getLifetimeProgress(age.toFloat()), 0.3f, 0.5f))
-
-            if (random.nextFloat() > 0.95f || age == 1) {
-                setParticleSpeed(
-                    (-0.05f + 0.1f * random.nextFloat()).toDouble(),
-                    (-0.05f + 0.1f * random.nextFloat()).toDouble(),
-                    (-0.05f + 0.1f * random.nextFloat()).toDouble()
-                )
-            }
+            return
         }
+
+        setAlpha(getFadeAmount(getLifetimeProgress(age.toFloat()), 0.2f, 0.5f))
+
+        if (random.nextFloat() > 0.95f || age == 1) {
+            xd += (-0.02..0.02).random(random)
+            yd += (-0.01..0.02).random(random) // gentle upward bias
+            zd += (-0.02..0.02).random(random)
+        }
+
+        xd = xd.coerceIn(-0.05, 0.05)
+        yd = yd.coerceIn(-0.03, 0.05)
+        zd = zd.coerceIn(-0.05, 0.05)
     }
 
     private fun getLifetimeProgress(currentAge: Float): Float = Mth.clamp(currentAge / lifetime.toFloat(), 0.0f, 1.0f)
 
     private fun getFadeAmount(lifetimeProgress: Float, fadeInTime: Float, fadeOutTime: Float): Float {
-        return if (lifetimeProgress >= 1.0f - fadeInTime) {
-            (1.0f - lifetimeProgress) / fadeInTime
-        } else {
-            if (lifetimeProgress <= fadeOutTime) lifetimeProgress / fadeOutTime else 1.0f
+        return when {
+            lifetimeProgress < fadeInTime -> lifetimeProgress / fadeInTime
+            lifetimeProgress > 1.0f - fadeOutTime -> (1.0f - lifetimeProgress) / fadeOutTime
+            else -> 1.0f
         }
     }
 
-    class StationaryProvider(private val sprite: SpriteSet): ParticleProvider<SimpleParticleType> {
-        override fun createParticle(options: SimpleParticleType, level: ClientLevel, x: Double, y: Double, z: Double, xAux: Double, yAux: Double, zAux: Double, random: RandomSource): Particle? {
+    class StationaryProvider(private val sprite: SpriteSet) : ParticleProvider<SimpleParticleType> {
+        override fun createParticle(options: SimpleParticleType, level: ClientLevel, x: Double, y: Double, z: Double, xAux: Double, yAux: Double, zAux: Double, random: RandomSource): Particle {
             val tex = sprite[random]
             val particle = FireflyParticle(level, x, y, z, 0.0, 0.0, 0.0, tex)
             particle.setSprite(tex)
             particle.setLifetime(random.nextInt(200, 300))
             return particle
         }
-
     }
 
     class WanderingProvider(private val sprite: SpriteSet) : ParticleProvider<SimpleParticleType> {
         override fun createParticle(type: SimpleParticleType, level: ClientLevel, x: Double, y: Double, z: Double, xSpeed: Double, ySpeed: Double, zSpeed: Double, random: RandomSource): Particle {
             val tex = sprite[random]
-            val particle = FireflyParticle(level, x, y, z, 0.1, 0.1, 0.1, tex)
-            val rand = level.random
-
-            particle.xd += rand.nextFloat() * (if (rand.nextBoolean()) -3.9 else 3.9) * rand.nextFloat() * 0.1
-            particle.yd += rand.nextFloat() * -0.25 * rand.nextFloat() * 0.1
-            particle.zd += rand.nextFloat() * (if (rand.nextBoolean()) -3.9 else 3.9) * rand.nextFloat() * 0.1
-
+            val particle = FireflyParticle(level, x, y, z, 0.0, 0.01, 0.0, tex)
             particle.setSprite(tex)
-            particle.setLifetime(rand.nextInt(200, 300))
+            particle.setLifetime(random.nextInt(200, 300))
             return particle
         }
     }
@@ -72,16 +70,12 @@ class FireflyParticle(level: ClientLevel, x: Double, y: Double, z: Double, xa: D
     class ParticleSpawnerProvider(private val sprite: SpriteSet) : ParticleProvider<SimpleParticleType> {
         override fun createParticle(type: SimpleParticleType, level: ClientLevel, x: Double, y: Double, z: Double, xSpeed: Double, ySpeed: Double, zSpeed: Double, random: RandomSource): Particle {
             val tex = sprite[random]
-            val particle = FireflyParticle(level, x, y, z, 0.1, 0.1, 0.1, tex)
-            val rand = level.random
-
-            particle.xd += rand.nextFloat() * (if (rand.nextBoolean()) -3.9 else 3.9) * rand.nextFloat() * 0.1
-            particle.yd += rand.nextFloat() * -0.25 * rand.nextFloat() * 0.1
-            particle.zd += rand.nextFloat() * (if (rand.nextBoolean()) -3.9 else 3.9) * rand.nextFloat() * 0.1
-
+            val particle = FireflyParticle(level, x, y, z, 0.0, 0.01, 0.0, tex)
             particle.setSprite(tex)
-            particle.setLifetime(rand.nextInt(200, 300))
+            particle.setLifetime(random.nextInt(200, 300))
             return particle
         }
     }
 }
+
+private fun ClosedFloatingPointRange<Double>.random(random: RandomSource): Double = start + (endInclusive - start) * random.nextDouble()

@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=up,orientation=north":  { "model": "twilight:block/cicada", "x": 0, "y": 180 },
+    "facing=up,orientation=south":  { "model": "twilight:block/cicada", "x": 0, "y": 0 },
+    "facing=up,orientation=east":   { "model": "twilight:block/cicada", "x": 0, "y": 270 },
+    "facing=up,orientation=west":   { "model": "twilight:block/cicada", "x": 0, "y": 90 },
+
+    "facing=down,orientation=north": { "model": "twilight:block/cicada", "x": 180, "y": 180 },
+    "facing=down,orientation=south": { "model": "twilight:block/cicada", "x": 180, "y": 0 },
+    "facing=down,orientation=east":  { "model": "twilight:block/cicada", "x": 180, "y": 270 },
+    "facing=down,orientation=west":  { "model": "twilight:block/cicada", "x": 180, "y": 90 },
+
+    "facing=north,orientation=up":    { "model": "twilight:block/cicada", "x": 90, "y": 0 },
+    "facing=north,orientation=down":  { "model": "twilight:block/cicada", "x": 270, "y": 180 },
+
+    "facing=south,orientation=up":    { "model": "twilight:block/cicada", "x": 90, "y": 180 },
+    "facing=south,orientation=down":  { "model": "twilight:block/cicada", "x": 270, "y": 0 },
+
+    "facing=west,orientation=up":     { "model": "twilight:block/cicada", "x": 90, "y": 270 },
+    "facing=west,orientation=down":   { "model": "twilight:block/cicada", "x": 270, "y": 90 },
+
+    "facing=east,orientation=up":     { "model": "twilight:block/cicada", "x": 90, "y": 90 },
+    "facing=east,orientation=down":   { "model": "twilight:block/cicada", "x": 270, "y": 270 }
+  }
+}
