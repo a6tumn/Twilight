@@ -22,6 +22,7 @@ import net.minecraft.resources.Identifier
 import net.minecraft.resources.ResourceKey
 import net.minecraft.util.random.WeightedList
 import net.minecraft.util.valueproviders.ConstantInt
+import net.minecraft.util.valueproviders.UniformInt
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.RotatedPillarBlock
 import net.minecraft.world.level.block.state.BlockState
@@ -113,7 +114,7 @@ object TwilightTreeConfigurations {
             LeafSpheroidFoliagePlacer(
                 sqrt(4.0.pow(2) + 1.0.pow(2)).toFloat(),
                 1.5f,
-                ConstantInt.of(0),
+                UniformInt.of(0, 0),
                 0,
                 0,
                 -0.2f,
@@ -159,7 +160,7 @@ object TwilightTreeConfigurations {
                 )
             ),
             BlockStateProvider.simple(TwilightBlocks.TWILIGHT_MANGROVE_SET.leaves),
-            LeafSpheroidFoliagePlacer(2.5f, 1.5f, ConstantInt.of(0), 2, 0, -0.25f, (24 * 0.666f).toInt()),
+            LeafSpheroidFoliagePlacer(2.5f, 1.5f, UniformInt.of(0, 0), 2, 0, -0.25f, (24 * 0.666f).toInt()),
             TwoLayersFeatureSize(4, 1, 1)
         ).decorators(
             listOf(
@@ -199,7 +200,7 @@ object TwilightTreeConfigurations {
                 preventExposedRoot = false
             ),
             BlockStateProvider.simple(TwilightBlocks.DARKWOOD_SET.leaves),
-            LeafSpheroidFoliagePlacer(4.5f, 2.25f, ConstantInt.of(0), 1, 0, 0.45f, (24 * 1.5f).toInt()),
+            LeafSpheroidFoliagePlacer(4.5f, 2.25f, UniformInt.of(0, 0), 1, 0, 0.45f, (24 * 1.5f).toInt()),
             TwoLayersFeatureSize(4, 1, 1)
         ).decorators(
             listOf(
@@ -237,7 +238,7 @@ object TwilightTreeConfigurations {
                 preventExposedRoot = false
             ),
             BlockStateProvider.simple(TwilightBlocks.TRANSWOOD_SET.leaves),
-            LeafSpheroidFoliagePlacer(4.5f, 1.5f, ConstantInt.of(0), 1, 0, -0.25f, 0
+            LeafSpheroidFoliagePlacer(4.5f, 1.5f, UniformInt.of(0, 0), 1, 0, -0.25f, 0
             ),
             TwoLayersFeatureSize(4, 1, 5)
         ).decorators(
@@ -263,7 +264,7 @@ object TwilightTreeConfigurations {
             BlockStateProvider.simple(TwilightBlocks.SORTWOOD_SET.log),
             StraightTrunkPlacer(3, 0, 0),
             BlockStateProvider.simple(TwilightBlocks.SORTWOOD_SET.leaves),
-            LeafSpheroidFoliagePlacer(1.5f, 2.25f, ConstantInt.of(0), 1, 0, 0.5f, 0),
+            LeafSpheroidFoliagePlacer(1.5f, 2.25f, UniformInt.of(0, 0), 1, 0, 0.5f, 0),
             TwoLayersFeatureSize(1, 1, 1)
         ).decorators(
             listOf(

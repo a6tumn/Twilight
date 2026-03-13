@@ -15,14 +15,13 @@ import net.minecraft.client.renderer.special.SpecialModelRenderer
 import net.minecraft.client.resources.model.sprite.SpriteGetter
 import net.minecraft.client.resources.model.sprite.SpriteId
 import net.minecraft.resources.Identifier
-import net.minecraft.world.item.ItemDisplayContext
 import net.minecraft.world.level.block.state.properties.ChestType
 import org.joml.Vector3fc
 import java.util.function.Consumer
 
 class LocklessChestSpecialRenderer(private val sprites: SpriteGetter, private val model: ChestModel, private val sprite: SpriteId, private val openness: Float) : NoDataSpecialModelRenderer {
 
-    override fun submit(type: ItemDisplayContext, poseStack: PoseStack, submitNodeCollector: SubmitNodeCollector, lightCoords: Int, overlayCoords: Int, hasFoil: Boolean, outlineColor: Int) {
+    override fun submit(poseStack: PoseStack, submitNodeCollector: SubmitNodeCollector, lightCoords: Int, overlayCoords: Int, hasFoil: Boolean, outlineColor: Int) {
         submitNodeCollector.submitModel(
             model,
             openness,

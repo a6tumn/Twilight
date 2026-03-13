@@ -5,6 +5,7 @@ import io.autumn.twilight.Twilight
 import io.autumn.twilight.block.TwilightBlocks
 import io.autumn.twilight.block.custom.HedgeBlock
 import io.autumn.twilight.block.custom.MagicLogCoreBlock
+import io.autumn.twilight.item.TwilightItems
 import io.autumn.twilight.specialrenderer.custom.LocklessChestSpecialRenderer
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
@@ -63,7 +64,51 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
         createMagicLogCore(blockModelGenerators,"sortwood", TwilightBlocks.SORTWOOD_CORE)
     }
 
-    override fun generateItemModels(itemModelGenerators: ItemModelGenerators) {}
+    override fun generateItemModels(itemModelGenerators: ItemModelGenerators) {
+        createFlatItemModels(itemModelGenerators,
+            listOf(
+                TwilightItems.RAVEN_FEATHER,
+                TwilightItems.TOWER_KEY,
+                TwilightItems.CARMINITE,
+                TwilightItems.NAGA_SCALE,
+                TwilightItems.LIVEROOT,
+                TwilightItems.RAW_IRONWOOD,
+                TwilightItems.IRONWOOD_INGOT,
+                TwilightItems.STEELEAF_INGOT,
+                TwilightItems.FIERY_BLOOD,
+                TwilightItems.FIERY_TEARS,
+                TwilightItems.FIERY_INGOT,
+                TwilightItems.ARMOR_SHARD,
+                TwilightItems.ARMOR_SHARD_CLUSTER,
+                TwilightItems.KNIGHTMETAL_INGOT,
+                TwilightItems.ARCTIC_FUR,
+                TwilightItems.ALPHA_YETI_FUR
+            )
+        )
+        createTwoLayerItemModels(itemModelGenerators,
+            listOf(
+                TwilightItems.BORER_ESSENCE
+            ),
+            listOf(
+                Twilight.namespaceAndPath("borer_essence")
+            )
+        )
+    }
+
+    private fun createFlatItemModels(itemModelGenerators: ItemModelGenerators, itemList: List<Item>) {
+        for (item in itemList) {
+            itemModelGenerators.generateFlatItem(item, ModelTemplates.FLAT_ITEM)
+        }
+    }
+
+    private fun createTwoLayerItemModels(itemModelGenerators: ItemModelGenerators, itemList: List<Item>, idList: List<Identifier>) {
+        for (item in itemList) {
+            for (itemId in idList) {
+                val id = itemModelGenerators.generateLayeredItem(item, Material(itemId.withPrefix("item/").withSuffix("_layer0")), Material(itemId.withPrefix("item/").withSuffix("_layer1")))
+                itemModelGenerators.itemModelOutput.accept(item, ItemModelUtils.plainModel(id))
+            }
+        }
+    }
 
     private fun createWoodSetModels(blockModelGenerators: BlockModelGenerators, woodSet: WoodSet, leavesTintColor: Int, chestBlock: Block, trappedChestBlock: Block, lockless: Boolean) {
         blockModelGenerators.woodProvider(woodSet.log).logWithHorizontal(woodSet.log).wood(woodSet.wood)

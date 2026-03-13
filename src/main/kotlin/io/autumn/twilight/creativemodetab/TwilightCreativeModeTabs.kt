@@ -3,6 +3,7 @@ package io.autumn.twilight.creativemodetab
 import io.autumn.torchberry.annotations.OnInitialize
 import io.autumn.twilight.Twilight
 import io.autumn.twilight.block.TwilightBlocks
+import io.autumn.twilight.item.TwilightItems
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
@@ -14,14 +15,15 @@ import net.minecraft.world.item.ItemStack
 
 object TwilightCreativeModeTabs {
 
-    val DEV_TAB: ResourceKey<CreativeModeTab> = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Twilight.namespaceAndPath("dev_tab"))
+    val BLOCKS: ResourceKey<CreativeModeTab> = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Twilight.namespaceAndPath("blocks"))
+    val ITEMS: ResourceKey<CreativeModeTab> = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Twilight.namespaceAndPath("items"))
 
     fun registerCreativeModeTabs() {
         Registry.register(
             BuiltInRegistries.CREATIVE_MODE_TAB,
-            DEV_TAB,
+            BLOCKS,
             FabricCreativeModeTab.builder()
-                .title(Component.literal("Development"))
+                .title(Component.literal("Blocks"))
                 .icon { ItemStack(TwilightBlocks.TWILIGHT_OAK_SET.log) }
                 .displayItems { _, entries ->
                     entries.accept(TwilightBlocks.CORONATION_CARPET_CRUDE)
@@ -51,8 +53,6 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.slab)
                     entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.button)
                     entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.pressurePlate)
-                    entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.signItem)
-                    entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.hangingSignItem)
                     entries.accept(TwilightBlocks.TWILIGHT_OAK_CHEST)
                     entries.accept(TwilightBlocks.TRAPPED_TWILIGHT_OAK_CHEST)
 
@@ -71,8 +71,6 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightBlocks.CANOPY_SET.slab)
                     entries.accept(TwilightBlocks.CANOPY_SET.button)
                     entries.accept(TwilightBlocks.CANOPY_SET.pressurePlate)
-                    entries.accept(TwilightBlocks.CANOPY_SET.signItem)
-                    entries.accept(TwilightBlocks.CANOPY_SET.hangingSignItem)
                     entries.accept(TwilightBlocks.CANOPY_CHEST)
                     entries.accept(TwilightBlocks.TRAPPED_CANOPY_CHEST)
 
@@ -91,8 +89,6 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightBlocks.TWILIGHT_MANGROVE_SET.slab)
                     entries.accept(TwilightBlocks.TWILIGHT_MANGROVE_SET.button)
                     entries.accept(TwilightBlocks.TWILIGHT_MANGROVE_SET.pressurePlate)
-                    entries.accept(TwilightBlocks.TWILIGHT_MANGROVE_SET.signItem)
-                    entries.accept(TwilightBlocks.TWILIGHT_MANGROVE_SET.hangingSignItem)
                     entries.accept(TwilightBlocks.TWILIGHT_MANGROVE_ROOT)
                     entries.accept(TwilightBlocks.TWILIGHT_MANGROVE_CHEST)
                     entries.accept(TwilightBlocks.TRAPPED_TWILIGHT_MANGROVE_CHEST)
@@ -112,8 +108,6 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightBlocks.DARKWOOD_SET.slab)
                     entries.accept(TwilightBlocks.DARKWOOD_SET.button)
                     entries.accept(TwilightBlocks.DARKWOOD_SET.pressurePlate)
-                    entries.accept(TwilightBlocks.DARKWOOD_SET.signItem)
-                    entries.accept(TwilightBlocks.DARKWOOD_SET.hangingSignItem)
                     entries.accept(TwilightBlocks.DARKWOOD_CHEST)
                     entries.accept(TwilightBlocks.TRAPPED_DARKWOOD_CHEST)
 
@@ -133,8 +127,6 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightBlocks.TIMEWOOD_SET.slab)
                     entries.accept(TwilightBlocks.TIMEWOOD_SET.button)
                     entries.accept(TwilightBlocks.TIMEWOOD_SET.pressurePlate)
-                    entries.accept(TwilightBlocks.TIMEWOOD_SET.signItem)
-                    entries.accept(TwilightBlocks.TIMEWOOD_SET.hangingSignItem)
                     entries.accept(TwilightBlocks.TIMEWOOD_CHEST)
                     entries.accept(TwilightBlocks.TRAPPED_TIMEWOOD_CHEST)
 
@@ -154,8 +146,6 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightBlocks.TRANSWOOD_SET.slab)
                     entries.accept(TwilightBlocks.TRANSWOOD_SET.button)
                     entries.accept(TwilightBlocks.TRANSWOOD_SET.pressurePlate)
-                    entries.accept(TwilightBlocks.TRANSWOOD_SET.signItem)
-                    entries.accept(TwilightBlocks.TRANSWOOD_SET.hangingSignItem)
                     entries.accept(TwilightBlocks.TRANSWOOD_CHEST)
                     entries.accept(TwilightBlocks.TRAPPED_TRANSWOOD_CHEST)
 
@@ -175,8 +165,6 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightBlocks.MINEWOOD_SET.slab)
                     entries.accept(TwilightBlocks.MINEWOOD_SET.button)
                     entries.accept(TwilightBlocks.MINEWOOD_SET.pressurePlate)
-                    entries.accept(TwilightBlocks.MINEWOOD_SET.signItem)
-                    entries.accept(TwilightBlocks.MINEWOOD_SET.hangingSignItem)
                     entries.accept(TwilightBlocks.MINEWOOD_CHEST)
                     entries.accept(TwilightBlocks.TRAPPED_MINEWOOD_CHEST)
 
@@ -196,10 +184,53 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightBlocks.SORTWOOD_SET.slab)
                     entries.accept(TwilightBlocks.SORTWOOD_SET.button)
                     entries.accept(TwilightBlocks.SORTWOOD_SET.pressurePlate)
-                    entries.accept(TwilightBlocks.SORTWOOD_SET.signItem)
-                    entries.accept(TwilightBlocks.SORTWOOD_SET.hangingSignItem)
                     entries.accept(TwilightBlocks.SORTWOOD_CHEST)
                     entries.accept(TwilightBlocks.TRAPPED_SORTWOOD_CHEST)
+                }
+                .build()
+        )
+        Registry.register(
+            BuiltInRegistries.CREATIVE_MODE_TAB,
+            ITEMS,
+            FabricCreativeModeTab.builder()
+                .title(Component.literal("Items"))
+                .icon { ItemStack(TwilightBlocks.TWILIGHT_OAK_SET.log) }
+                .displayItems { _, entries ->
+                    entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.signItem)
+                    entries.accept(TwilightBlocks.TWILIGHT_OAK_SET.hangingSignItem)
+                    entries.accept(TwilightBlocks.CANOPY_SET.signItem)
+                    entries.accept(TwilightBlocks.CANOPY_SET.hangingSignItem)
+                    entries.accept(TwilightBlocks.TWILIGHT_MANGROVE_SET.signItem)
+                    entries.accept(TwilightBlocks.TWILIGHT_MANGROVE_SET.hangingSignItem)
+                    entries.accept(TwilightBlocks.DARKWOOD_SET.signItem)
+                    entries.accept(TwilightBlocks.DARKWOOD_SET.hangingSignItem)
+                    entries.accept(TwilightBlocks.TIMEWOOD_SET.signItem)
+                    entries.accept(TwilightBlocks.TIMEWOOD_SET.hangingSignItem)
+                    entries.accept(TwilightBlocks.TRANSWOOD_SET.signItem)
+                    entries.accept(TwilightBlocks.TRANSWOOD_SET.hangingSignItem)
+                    entries.accept(TwilightBlocks.MINEWOOD_SET.signItem)
+                    entries.accept(TwilightBlocks.MINEWOOD_SET.hangingSignItem)
+                    entries.accept(TwilightBlocks.SORTWOOD_SET.signItem)
+                    entries.accept(TwilightBlocks.SORTWOOD_SET.hangingSignItem)
+
+                    entries.accept(TwilightItems.RAVEN_FEATHER)
+                    entries.accept(TwilightItems.TOWER_KEY)
+                    entries.accept(TwilightItems.BORER_ESSENCE)
+                    entries.accept(TwilightItems.CARMINITE)
+
+                    entries.accept(TwilightItems.NAGA_SCALE)
+                    entries.accept(TwilightItems.LIVEROOT)
+                    entries.accept(TwilightItems.RAW_IRONWOOD)
+                    entries.accept(TwilightItems.IRONWOOD_INGOT)
+                    entries.accept(TwilightItems.STEELEAF_INGOT)
+                    entries.accept(TwilightItems.FIERY_BLOOD)
+                    entries.accept(TwilightItems.FIERY_TEARS)
+                    entries.accept(TwilightItems.FIERY_INGOT)
+                    entries.accept(TwilightItems.ARMOR_SHARD)
+                    entries.accept(TwilightItems.ARMOR_SHARD_CLUSTER)
+                    entries.accept(TwilightItems.KNIGHTMETAL_INGOT)
+                    entries.accept(TwilightItems.ARCTIC_FUR)
+                    entries.accept(TwilightItems.ALPHA_YETI_FUR)
                 }
                 .build()
         )

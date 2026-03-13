@@ -3,6 +3,7 @@ package io.autumn.twilight.providers
 import io.autumn.carminite.wood.WoodSet
 import io.autumn.twilight.lists.TwilightItemTags
 import io.autumn.twilight.block.TwilightBlocks
+import io.autumn.twilight.item.TwilightItems
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.minecraft.core.HolderLookup
@@ -39,6 +40,24 @@ class EnglishLangProvider(output: FabricPackOutput, registriesFuture: Completabl
         translationBuilder.add(TwilightBlocks.MINEWOOD_CORE, "Minewood Core")
         createWoodSetTranslations(translationBuilder, "Sortwood", TwilightBlocks.SORTWOOD_SET, TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST)
         translationBuilder.add(TwilightBlocks.SORTWOOD_CORE, "Sortwood Core")
+
+        translationBuilder.add(TwilightItems.RAVEN_FEATHER, "Raven Feather")
+        translationBuilder.add(TwilightItems.TOWER_KEY, "Tower Key")
+        translationBuilder.add(TwilightItems.BORER_ESSENCE, "Borer Essence")
+        translationBuilder.add(TwilightItems.CARMINITE, "Carminite")
+        translationBuilder.add(TwilightItems.NAGA_SCALE, "Naga Scale")
+        translationBuilder.add(TwilightItems.LIVEROOT, "Liveroot")
+        translationBuilder.add(TwilightItems.RAW_IRONWOOD, "Raw Ironwood")
+        translationBuilder.add(TwilightItems.IRONWOOD_INGOT, "Ironwood Ingot")
+        translationBuilder.add(TwilightItems.STEELEAF_INGOT, "Steeleaf Ingot")
+        translationBuilder.add(TwilightItems.FIERY_BLOOD, "Fiery Blood")
+        translationBuilder.add(TwilightItems.FIERY_TEARS, "Fiery Tears")
+        translationBuilder.add(TwilightItems.FIERY_INGOT, "Fiery Ingot")
+        translationBuilder.add(TwilightItems.ARMOR_SHARD, "Armor Shard")
+        translationBuilder.add(TwilightItems.ARMOR_SHARD_CLUSTER, "Armor Shard Cluster")
+        translationBuilder.add(TwilightItems.KNIGHTMETAL_INGOT, "Knightmetal Ingot")
+        translationBuilder.add(TwilightItems.ARCTIC_FUR, "Arctic Fur")
+        translationBuilder.add(TwilightItems.ALPHA_YETI_FUR, "Alpha Yeti Fur")
 
         translationBuilder.add(TwilightItemTags.TWILIGHT_OAK_LOGS_ITEM_TAG, "Twilight Oak Logs")
         translationBuilder.add(TwilightItemTags.CANOPY_LOGS_ITEM_TAG, "Canopy Logs")
