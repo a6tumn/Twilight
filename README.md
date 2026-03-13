@@ -20,7 +20,7 @@ Be sure to check out their project for NeoForge releases.
 
 ## Current Supported Version
 
-- `26.1-pre-1`
+- `26.1-pre-2`
 
 ---
 
