@@ -1,12 +1,16 @@
 package io.autumn.twilight.providers
 
+import io.autumn.carminite.tool.ToolSet
 import io.autumn.carminite.wood.WoodSet
 import io.autumn.twilight.lists.TwilightItemTags
 import io.autumn.twilight.block.TwilightBlocks
+import io.autumn.twilight.item.TwilightItems
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider
 import net.minecraft.core.HolderLookup
 import net.minecraft.tags.ItemTags
+import net.minecraft.tags.TagKey
+import net.minecraft.world.item.Item
 import java.util.concurrent.CompletableFuture
 
 class ItemTagsProvider(output: FabricPackOutput, registriesFuture: CompletableFuture<HolderLookup.Provider>) : FabricTagsProvider.ItemTagsProvider(output, registriesFuture) {
@@ -74,6 +78,23 @@ class ItemTagsProvider(output: FabricPackOutput, registriesFuture: CompletableFu
 
         valueLookupBuilder(ItemTags.SAPLINGS)
             .add(TwilightBlocks.RAINBOW_OAK_SAPLING.asItem())
+
+        createToolSetItemTags(TwilightItems.IRONWOOD_SET, TwilightItemTags.IRONWOOD_TOOL_MATERIALS, listOf(TwilightItems.IRONWOOD_INGOT))
+        valueLookupBuilder(TwilightItemTags.FIERY_VIALS)
+            .add(TwilightItems.FIERY_BLOOD, TwilightItems.FIERY_TEARS)
+    }
+
+    private fun createToolSetItemTags(toolSet: ToolSet, repairTag: TagKey<Item>, repairMaterials: List<Item>) {
+        toolSet.mapOfToolsToTypes.forEach { (type, item) ->
+            item?.let {
+                toolSet.mapOfTypesToItemTags[type]?.let { tag ->
+                    valueLookupBuilder(tag).add(item)
+                }
+            }
+        }
+        for (material in repairMaterials) {
+            valueLookupBuilder(repairTag).add(material)
+        }
     }
 
     private fun createWoodSetItemTags(woodSet: WoodSet) {

@@ -50,6 +50,9 @@ class BlockTagsProvider(output: FabricPackOutput, registriesFuture: CompletableF
 
         valueLookupBuilder(BlockTags.SAPLINGS)
             .add(TwilightBlocks.RAINBOW_OAK_SAPLING)
+
+        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_IRONWOOD_TOOL)
+            .addOptionalTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
     }
 
     private fun createWoodSetBlockTags(woodSet: WoodSet) {

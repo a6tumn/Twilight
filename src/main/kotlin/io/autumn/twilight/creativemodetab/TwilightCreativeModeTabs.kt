@@ -231,6 +231,8 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightItems.KNIGHTMETAL_INGOT)
                     entries.accept(TwilightItems.ARCTIC_FUR)
                     entries.accept(TwilightItems.ALPHA_YETI_FUR)
+
+                    TwilightItems.IRONWOOD_SET.listOfTools.forEach(entries::accept)
                 }
                 .build()
         )

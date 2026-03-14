@@ -1,7 +1,10 @@
 package io.autumn.twilight.providers
 
+import io.autumn.carminite.tool.ToolSet
+import io.autumn.carminite.tool.ToolType
 import io.autumn.carminite.wood.WoodSet
 import io.autumn.twilight.block.TwilightBlocks
+import io.autumn.twilight.item.TwilightItems
 import io.autumn.twilight.lists.TwilightItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
@@ -13,6 +16,8 @@ import net.minecraft.data.recipes.RecipeProvider
 import net.minecraft.tags.TagKey
 import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.Items
+import net.minecraft.world.item.crafting.CookingBookCategory
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import java.util.concurrent.CompletableFuture
@@ -31,6 +36,29 @@ class RecipeProvider(output: FabricPackOutput, registriesFuture: CompletableFutu
                 createWoodSetRecipes(TwilightBlocks.TRANSWOOD_SET, TwilightItemTags.TRANSWOOD_LOGS_ITEM_TAG, TwilightBlocks.TRANSWOOD_CHEST, TwilightBlocks.TRAPPED_TRANSWOOD_CHEST)
                 createWoodSetRecipes(TwilightBlocks.MINEWOOD_SET, TwilightItemTags.MINEWOOD_LOGS_ITEM_TAG, TwilightBlocks.MINEWOOD_CHEST, TwilightBlocks.TRAPPED_MINEWOOD_CHEST)
                 createWoodSetRecipes(TwilightBlocks.SORTWOOD_SET, TwilightItemTags.SORTWOOD_LOGS_ITEM_TAG, TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST)
+                createToolSetRecipes(TwilightItems.IRONWOOD_SET, TwilightItemTags.IRONWOOD_TOOL_MATERIALS)
+
+                shaped(RecipeCategory.MISC, TwilightItems.RAW_IRONWOOD)
+                    .pattern("lg")
+                    .pattern("r ")
+                    .define('l', TwilightItems.LIVEROOT)
+                    .define('g', Items.GOLD_NUGGET)
+                    .define('r', Items.RAW_IRON)
+                    .unlockedBy("has_liveroot", has(TwilightItems.LIVEROOT))
+                    .save(exporter)
+                oreSmelting(listOf(TwilightItems.RAW_IRONWOOD), RecipeCategory.MISC, CookingBookCategory.MISC, TwilightItems.IRONWOOD_INGOT, 0.7f, 200, "ironwood_ingot")
+                oreBlasting(listOf(TwilightItems.RAW_IRONWOOD), RecipeCategory.MISC, CookingBookCategory.MISC, TwilightItems.IRONWOOD_INGOT, 0.7f, 100, "ironwood_ingot")
+
+                shaped(RecipeCategory.MISC, TwilightItems.FIERY_INGOT)
+                    .pattern("fi")
+                    .define('f', TwilightItemTags.FIERY_VIALS)
+                    .define('i', Items.IRON_INGOT)
+                    .unlockedBy("has_fiery_blood", has(TwilightItems.FIERY_BLOOD))
+                    .save(exporter)
+
+
+                nineBlockStorageRecipesWithCustomPacking(RecipeCategory.MISC, TwilightItems.ARMOR_SHARD, RecipeCategory.MISC, TwilightItems.ARMOR_SHARD_CLUSTER, "armor_shard_cluster_from_nuggets", "armor_shard_cluster")
+
             }
 
             private fun createWoodSetRecipes(woodSet: WoodSet, logTag: TagKey<Item>, chestBlock: Block, trappedChestBlock: Block) {
@@ -54,6 +82,54 @@ class RecipeProvider(output: FabricPackOutput, registriesFuture: CompletableFutu
                     .define('p', woodSet.planks)
                     .define('t', Blocks.TRAPPED_CHEST)
                     .unlockedBy(getHasName(woodSet.planks), has(woodSet.planks))
+            }
+
+            private fun createToolSetRecipes(toolSet: ToolSet, materialTag: TagKey<Item>) {
+                toolSet.mapOfToolsToTypes.forEach { (type, item) ->
+                    item?.let {
+                        when (type) {
+                            ToolType.SWORD -> shaped(RecipeCategory.COMBAT, item)
+                                .pattern("X")
+                                .pattern("X")
+                                .pattern("#")
+                                .define('#', Items.STICK)
+                                .define('X', materialTag)
+                                .unlockedBy("has_${toolSet.setName.replaceFirstChar { it.lowercase() }}", this.has(materialTag))
+                                .save(exporter)
+                            ToolType.SHOVEL -> shaped(RecipeCategory.TOOLS, item)
+                                .pattern("X")
+                                .pattern("#")
+			                    .pattern("#")
+                                .define('#', Items.STICK)
+                                .define('X', materialTag)
+                                .unlockedBy("has_${toolSet.setName.replaceFirstChar { it.lowercase() }}", this.has(materialTag))
+                                .save(exporter)
+                            ToolType.PICKAXE -> shaped(RecipeCategory.TOOLS, item)
+                                .pattern("XXX")
+                                .pattern(" # ")
+                                .pattern(" # ")
+                                .define('#', Items.STICK)
+			                    .define('X', materialTag)
+			                    .unlockedBy("has_${toolSet.setName.replaceFirstChar { it.lowercase() }}", this.has(materialTag))
+                                .save(exporter)
+                            ToolType.AXE -> shaped(RecipeCategory.TOOLS, item)
+                                .pattern("XX")
+                                .pattern("X#")
+                                .pattern(" #")
+                                .define('#', Items.STICK)
+			                    .define('X', materialTag)
+			                    .unlockedBy("has_${toolSet.setName.replaceFirstChar { it.lowercase() }}", this.has(materialTag))
+                                .save(exporter)
+                            ToolType.HOE -> shaped(RecipeCategory.TOOLS, item)
+			                    .pattern("XX")
+                                .pattern(" #")
+                                .pattern(" #")
+                                .define('#', Items.STICK)
+                                .define('X', materialTag)
+			                    .unlockedBy("has_${toolSet.setName.replaceFirstChar { it.lowercase() }}", this.has(materialTag))
+                        }
+                    }
+                }
             }
         }
     }

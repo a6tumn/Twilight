@@ -1,5 +1,6 @@
 package io.autumn.twilight.providers
 
+import io.autumn.carminite.tool.ToolSet
 import io.autumn.carminite.wood.WoodSet
 import io.autumn.twilight.Twilight
 import io.autumn.twilight.block.TwilightBlocks
@@ -52,16 +53,16 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
         createWoodSetModels(blockModelGenerators, TwilightBlocks.DARKWOOD_SET, -12012264,  TwilightBlocks.DARKWOOD_CHEST, TwilightBlocks.TRAPPED_DARKWOOD_CHEST, false)
 
         createWoodSetModels(blockModelGenerators, TwilightBlocks.TIMEWOOD_SET, 6986775,  TwilightBlocks.TIMEWOOD_CHEST, TwilightBlocks.TRAPPED_TIMEWOOD_CHEST, true)
-        createMagicLogCore(blockModelGenerators, "timewood", TwilightBlocks.TIMEWOOD_CORE)
+        createMagicLogCore(blockModelGenerators, TwilightBlocks.TIMEWOOD_SET, TwilightBlocks.TIMEWOOD_CORE)
 
         createWoodSetModels(blockModelGenerators, TwilightBlocks.TRANSWOOD_SET, 7130346,  TwilightBlocks.TRANSWOOD_CHEST, TwilightBlocks.TRAPPED_TRANSWOOD_CHEST, false)
-        createMagicLogCore(blockModelGenerators, "transwood", TwilightBlocks.TRANSWOOD_CORE)
+        createMagicLogCore(blockModelGenerators, TwilightBlocks.TRANSWOOD_SET, TwilightBlocks.TRANSWOOD_CORE)
 
         createWoodSetModels(blockModelGenerators, TwilightBlocks.MINEWOOD_SET, 16576836,  TwilightBlocks.MINEWOOD_CHEST, TwilightBlocks.TRAPPED_MINEWOOD_CHEST, true)
-        createMagicLogCore(blockModelGenerators,"minewood", TwilightBlocks.MINEWOOD_CORE)
+        createMagicLogCore(blockModelGenerators, TwilightBlocks.MINEWOOD_SET, TwilightBlocks.MINEWOOD_CORE)
 
         createWoodSetModels(blockModelGenerators, TwilightBlocks.SORTWOOD_SET, 3558403,  TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST, true)
-        createMagicLogCore(blockModelGenerators,"sortwood", TwilightBlocks.SORTWOOD_CORE)
+        createMagicLogCore(blockModelGenerators, TwilightBlocks.SORTWOOD_SET, TwilightBlocks.SORTWOOD_CORE)
     }
 
     override fun generateItemModels(itemModelGenerators: ItemModelGenerators) {
@@ -93,6 +94,8 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
                 Twilight.namespaceAndPath("borer_essence")
             )
         )
+
+        createToolSetItemModels(itemModelGenerators, TwilightItems.IRONWOOD_SET)
     }
 
     private fun createFlatItemModels(itemModelGenerators: ItemModelGenerators, itemList: List<Item>) {
@@ -110,6 +113,18 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
         }
     }
 
+    private fun createFlatHandheldItemModels(itemModelGenerators: ItemModelGenerators, itemList: List<Item>) {
+        for (item in itemList) {
+            itemModelGenerators.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM)
+        }
+    }
+
+    private fun createToolSetItemModels(itemModelGenerators: ItemModelGenerators, toolSet: ToolSet) {
+        for (item in toolSet.listOfTools) {
+            createFlatHandheldItemModels(itemModelGenerators, listOf(item))
+        }
+    }
+
     private fun createWoodSetModels(blockModelGenerators: BlockModelGenerators, woodSet: WoodSet, leavesTintColor: Int, chestBlock: Block, trappedChestBlock: Block, lockless: Boolean) {
         blockModelGenerators.woodProvider(woodSet.log).logWithHorizontal(woodSet.log).wood(woodSet.wood)
         blockModelGenerators.woodProvider(woodSet.strippedLog).logWithHorizontal(woodSet.strippedLog).wood(woodSet.strippedWood)
@@ -118,17 +133,17 @@ class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
         blockModelGenerators.createHangingSign(woodSet.strippedLog, woodSet.hangingSign, woodSet.wallHangingSign)
         blockModelGenerators.family(woodSet.planks).generateFor(woodSet.blockFamily)
         if(lockless) {
-            createLocklessChest(chestBlock, woodSet.planks, Twilight.namespaceAndPath(woodSet.woodName), blockModelGenerators)
-            createLocklessChest(trappedChestBlock, woodSet.planks, Twilight.namespaceAndPath("trapped_${woodSet.woodName}"), blockModelGenerators)
+            createLocklessChest(chestBlock, woodSet.planks, Twilight.namespaceAndPath(woodSet.woodId), blockModelGenerators)
+            createLocklessChest(trappedChestBlock, woodSet.planks, Twilight.namespaceAndPath("trapped_${woodSet.woodId}"), blockModelGenerators)
         } else {
-            blockModelGenerators.createChest(chestBlock, woodSet.planks, Twilight.namespaceAndPath(woodSet.woodName), false)
-            blockModelGenerators.createChest(trappedChestBlock, woodSet.planks, Twilight.namespaceAndPath("trapped_${woodSet.woodName}"), false)
+            blockModelGenerators.createChest(chestBlock, woodSet.planks, Twilight.namespaceAndPath(woodSet.woodId), false)
+            blockModelGenerators.createChest(trappedChestBlock, woodSet.planks, Twilight.namespaceAndPath("trapped_${woodSet.woodId}"), false)
         }
     }
 
-    private fun createMagicLogCore(blockModelGenerators: BlockModelGenerators, woodName: String, coreBlock: Block) {
-        val mappingOff = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodName}_core")), Material(Twilight.namespaceAndPath("block/${woodName}_log_top")))
-        val mappingOn = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodName}_core_on")), Material(Twilight.namespaceAndPath("block/${woodName}_log_top")))
+    private fun createMagicLogCore(blockModelGenerators: BlockModelGenerators, woodSet: WoodSet, coreBlock: Block) {
+        val mappingOff = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodSet.woodId}_core")), Material(Twilight.namespaceAndPath("block/${woodSet.woodId}_log_top")))
+        val mappingOn = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodSet.woodId}_core_on")), Material(Twilight.namespaceAndPath("block/${woodSet.woodId}_log_top")))
 
         val offId = ModelTemplates.CUBE_COLUMN.create(coreBlock, mappingOff, blockModelGenerators.modelOutput)
         val onId = blockModelGenerators.createSuffixedVariant(coreBlock, "_on", ModelTemplates.CUBE_COLUMN) { mappingOn }
