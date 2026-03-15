@@ -1,16 +1,13 @@
 package io.autumn.twilight.providers
 
-import io.autumn.carminite.wood.WoodSet
+import io.autumn.carminite.datagen.providers.CarminiteBlockLootTableProvider
 import io.autumn.twilight.block.TwilightBlocks
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider
 import net.minecraft.core.HolderLookup
-import net.minecraft.world.level.block.Block
 import java.util.concurrent.CompletableFuture
 
-class BlockLootTableProvider(output: FabricPackOutput, registriesFuture: CompletableFuture<HolderLookup.Provider>) : FabricBlockLootSubProvider(output, registriesFuture) {
+class BlockLootTableProvider(output: FabricPackOutput, registriesFuture: CompletableFuture<HolderLookup.Provider>) : CarminiteBlockLootTableProvider(output, registriesFuture) {
     override fun generate() {
-
         createWoodSetDrops(TwilightBlocks.TWILIGHT_OAK_SET, TwilightBlocks.TWILIGHT_OAK_CHEST, TwilightBlocks.TRAPPED_TWILIGHT_OAK_CHEST)
         createLeavesDrops(TwilightBlocks.RAINBOW_OAK_LEAVES, TwilightBlocks.RAINBOW_OAK_SAPLING, NORMAL_LEAVES_SAPLING_CHANCES[0])
         dropSelf(TwilightBlocks.RAINBOW_OAK_SAPLING)
@@ -34,29 +31,5 @@ class BlockLootTableProvider(output: FabricPackOutput, registriesFuture: Complet
         dropSelf(TwilightBlocks.MAYAPPLE)
         dropSelf(TwilightBlocks.FIREFLY)
         dropSelf(TwilightBlocks.CICADA)
-    }
-
-    private fun createWoodSetDrops(woodSet: WoodSet, chestBlock: Block, trappedChestBlock: Block) {
-        dropSelf(woodSet.log)
-        dropSelf(woodSet.strippedLog)
-        dropSelf(woodSet.wood)
-        dropSelf(woodSet.strippedWood)
-        createLeavesDrops(woodSet.leaves, woodSet.sapling, NORMAL_LEAVES_SAPLING_CHANCES[0])
-        dropSelf(woodSet.sapling)
-        dropSelf(woodSet.planks)
-        dropSelf(woodSet.door)
-        dropSelf(woodSet.trapdoor)
-        dropSelf(woodSet.fence)
-        dropSelf(woodSet.fenceGate)
-        dropSelf(woodSet.stairs)
-        dropSelf(woodSet.slab)
-        dropSelf(woodSet.button)
-        dropSelf(woodSet.pressurePlate)
-        dropSelf(woodSet.standingSign)
-        dropSelf(woodSet.wallSign)
-        dropSelf(woodSet.hangingSign)
-        dropSelf(woodSet.wallHangingSign)
-        dropSelf(chestBlock)
-        dropSelf(trappedChestBlock)
     }
 }

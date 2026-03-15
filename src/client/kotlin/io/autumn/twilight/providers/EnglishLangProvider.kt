@@ -67,5 +67,6 @@ class EnglishLangProvider(output: FabricPackOutput, registriesFuture: Completabl
         translationBuilder.add(TwilightItemTags.MINEWOOD_LOGS_ITEM_TAG, "Minewood Logs")
         translationBuilder.add(TwilightItemTags.SORTWOOD_LOGS_ITEM_TAG, "Sortwood Logs")
         translationBuilder.add(TwilightItemTags.IRONWOOD_TOOL_MATERIALS, "Ironwood Tool Materials")
+        translationBuilder.add(TwilightItemTags.FIERY_VIALS, "Fiery Vials")
     }
 }
