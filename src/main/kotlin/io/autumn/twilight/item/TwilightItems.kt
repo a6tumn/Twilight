@@ -2,6 +2,7 @@ package io.autumn.twilight.item
 
 import io.autumn.carminite.registry.registerGenericItem
 import io.autumn.carminite.tool.ToolSet
+import io.autumn.carminite.tool.ToolType
 import io.autumn.torchberry.annotations.OnInitialize
 import io.autumn.twilight.Twilight
 import io.autumn.twilight.lists.TwilightBlockTags
@@ -30,16 +31,91 @@ object TwilightItems {
     val ARCTIC_FUR = registerGenericItem(Twilight.namespaceAndPath("arctic_fur"), ::Item, Item.Properties())
     val ALPHA_YETI_FUR = registerGenericItem(Twilight.namespaceAndPath("alpha_yeti_fur"), ::Item, Item.Properties().rarity(Rarity.UNCOMMON))
 
-    val IRONWOOD_SET = ToolSet(
+    val IRONWOOD_TOOL_SET = ToolSet(
         Twilight.namespaceAndPath("ironwood"),
         TwilightBlockTags.INCORRECT_FOR_IRONWOOD_TOOL,
         TwilightItemTags.IRONWOOD_TOOL_MATERIALS,
         512,
-        6.5f,
+        6.0f,
         2.0f,
         25,
-        0.0f,
-        0.0f
+        ToolType.entries.toSet(),
+        mapOf(
+            ToolType.SWORD to -2.4f,
+            ToolType.SHOVEL to -3.0f,
+            ToolType.PICKAXE to -2.8f,
+            ToolType.AXE to -3.1f,
+            ToolType.HOE to -1.0f
+        ),
+        mapOf(
+            ToolType.SWORD to 3.0f,
+            ToolType.SHOVEL to 1.5f,
+            ToolType.PICKAXE to 1.0f,
+            ToolType.AXE to 6.0f,
+            ToolType.HOE to -2.0f
+        )
+    )
+    val STEELEAF_TOOL_SET = ToolSet(
+        Twilight.namespaceAndPath("steeleaf"),
+        TwilightBlockTags.INCORRECT_FOR_STEELEAF_TOOL,
+        TwilightItemTags.STEELEAF_TOOL_MATERIALS,
+        131,
+        8.0f,
+        3.0f,
+        9,
+        ToolType.entries.toSet(),
+        mapOf(
+            ToolType.SWORD to -2.4f,
+            ToolType.SHOVEL to -3.0f,
+            ToolType.PICKAXE to -2.8f,
+            ToolType.AXE to -3.0f,
+            ToolType.HOE to 0.0f
+        ),
+        mapOf(
+            ToolType.SWORD to 3.0f,
+            ToolType.SHOVEL to 1.5f,
+            ToolType.PICKAXE to 1.0f,
+            ToolType.AXE to 5.0f,
+            ToolType.HOE to -3.0f
+        )
+    )
+    val KNIGHTMETAL_TOOL_SET = ToolSet(
+        Twilight.namespaceAndPath("knightmetal"),
+        TwilightBlockTags.INCORRECT_FOR_KNIGHTMETAL_TOOL,
+        TwilightItemTags.KNIGHTMETAL_TOOL_MATERIALS,
+        512,
+        8.0f,
+        3.0f,
+        8,
+        setOf(ToolType.SWORD, ToolType.PICKAXE, ToolType.AXE),
+        mapOf(
+            ToolType.SWORD to -2.4f,
+            ToolType.PICKAXE to -2.8f,
+            ToolType.AXE to -3.0f
+        ),
+        mapOf(
+            ToolType.SWORD to 3.0f,
+            ToolType.PICKAXE to 1.0f,
+            ToolType.AXE to 5.0f
+        )
+    )
+    val FIERY_TOOL_SET = ToolSet(
+        Twilight.namespaceAndPath("fiery"),
+        TwilightBlockTags.INCORRECT_FOR_FIERY_TOOL,
+        TwilightItemTags.FIERY_TOOL_MATERIALS,
+        1024,
+        9.0f,
+        4.0f,
+        10,
+        setOf(ToolType.SWORD, ToolType.PICKAXE),
+        mapOf(
+            ToolType.SWORD to -2.4f,
+            ToolType.PICKAXE to -2.8f
+        ),
+        mapOf(
+            ToolType.SWORD to 3.0f,
+            ToolType.PICKAXE to 1.0f
+        )
     )
     
     @OnInitialize

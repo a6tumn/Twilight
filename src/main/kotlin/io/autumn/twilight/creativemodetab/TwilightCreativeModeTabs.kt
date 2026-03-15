@@ -232,7 +232,10 @@ object TwilightCreativeModeTabs {
                     entries.accept(TwilightItems.ARCTIC_FUR)
                     entries.accept(TwilightItems.ALPHA_YETI_FUR)
 
-                    TwilightItems.IRONWOOD_SET.listOfTools.forEach(entries::accept)
+                    TwilightItems.IRONWOOD_TOOL_SET.listOfTools.forEach(entries::accept)
+                    TwilightItems.STEELEAF_TOOL_SET.listOfTools.forEach(entries::accept)
+                    TwilightItems.KNIGHTMETAL_TOOL_SET.listOfTools.forEach(entries::accept)
+                    TwilightItems.FIERY_TOOL_SET.listOfTools.forEach(entries::accept)
                 }
                 .build()
         )

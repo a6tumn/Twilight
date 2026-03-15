@@ -79,7 +79,11 @@ class ItemTagsProvider(output: FabricPackOutput, registriesFuture: CompletableFu
         valueLookupBuilder(ItemTags.SAPLINGS)
             .add(TwilightBlocks.RAINBOW_OAK_SAPLING.asItem())
 
-        createToolSetItemTags(TwilightItems.IRONWOOD_SET, TwilightItemTags.IRONWOOD_TOOL_MATERIALS, listOf(TwilightItems.IRONWOOD_INGOT))
+        createToolSetItemTags(TwilightItems.IRONWOOD_TOOL_SET, TwilightItemTags.IRONWOOD_TOOL_MATERIALS, listOf(TwilightItems.IRONWOOD_INGOT))
+        createToolSetItemTags(TwilightItems.STEELEAF_TOOL_SET, TwilightItemTags.STEELEAF_TOOL_MATERIALS, listOf(TwilightItems.STEELEAF_INGOT))
+        createToolSetItemTags(TwilightItems.KNIGHTMETAL_TOOL_SET, TwilightItemTags.KNIGHTMETAL_TOOL_MATERIALS, listOf(TwilightItems.KNIGHTMETAL_INGOT))
+        createToolSetItemTags(TwilightItems.FIERY_TOOL_SET, TwilightItemTags.FIERY_TOOL_MATERIALS, listOf(TwilightItems.FIERY_INGOT))
+
         valueLookupBuilder(TwilightItemTags.FIERY_VIALS)
             .add(TwilightItems.FIERY_BLOOD, TwilightItems.FIERY_TEARS)
     }

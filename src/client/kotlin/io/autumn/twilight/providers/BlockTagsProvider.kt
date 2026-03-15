@@ -53,6 +53,15 @@ class BlockTagsProvider(output: FabricPackOutput, registriesFuture: CompletableF
 
         valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_IRONWOOD_TOOL)
             .addOptionalTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+
+        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_STEELEAF_TOOL)
+            .addOptionalTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
+
+        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_KNIGHTMETAL_TOOL)
+            .addOptionalTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
+
+        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_FIERY_TOOL)
+            .addOptionalTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL)
     }
 
     private fun createWoodSetBlockTags(woodSet: WoodSet) {

@@ -15,5 +15,8 @@ object TwilightItemTags {
     val SORTWOOD_LOGS_ITEM_TAG = TagKey.create(Registries.ITEM, Twilight.namespaceAndPath("sortwood_logs_item_tag"))
 
     val IRONWOOD_TOOL_MATERIALS = TagKey.create(Registries.ITEM, Twilight.namespaceAndPath("ironwood_tool_materials"))
+    val STEELEAF_TOOL_MATERIALS = TagKey.create(Registries.ITEM, Twilight.namespaceAndPath("steeleaf_tool_materials"))
+    val KNIGHTMETAL_TOOL_MATERIALS = TagKey.create(Registries.ITEM, Twilight.namespaceAndPath("knightmetal_tool_materials"))
+    val FIERY_TOOL_MATERIALS = TagKey.create(Registries.ITEM, Twilight.namespaceAndPath("fiery_tool_materials"))
     val FIERY_VIALS = TagKey.create(Registries.ITEM, Twilight.namespaceAndPath("fiery_vials"))
 }

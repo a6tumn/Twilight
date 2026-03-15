@@ -92,7 +92,10 @@ class ModelProvider(output: FabricPackOutput) : CarminiteModelProvider(output) {
             )
         )
 
-        itemModelGenerators.createToolSetItemModels(TwilightItems.IRONWOOD_SET)
+        itemModelGenerators.createToolSetItemModels(TwilightItems.IRONWOOD_TOOL_SET)
+        itemModelGenerators.createToolSetItemModels(TwilightItems.STEELEAF_TOOL_SET)
+        itemModelGenerators.createToolSetItemModels(TwilightItems.KNIGHTMETAL_TOOL_SET)
+        itemModelGenerators.createToolSetItemModels(TwilightItems.FIERY_TOOL_SET)
     }
 
     private fun createTwoLayerItemModels(itemModelGenerators: ItemModelGenerators, itemList: List<Item>, idList: List<Identifier>) {

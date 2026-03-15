@@ -26,7 +26,10 @@ class RecipeProvider(output: FabricPackOutput, registriesFuture: CompletableFutu
                 createWoodSetRecipes(TwilightBlocks.TRANSWOOD_SET, TwilightItemTags.TRANSWOOD_LOGS_ITEM_TAG, TwilightBlocks.TRANSWOOD_CHEST, TwilightBlocks.TRAPPED_TRANSWOOD_CHEST)
                 createWoodSetRecipes(TwilightBlocks.MINEWOOD_SET, TwilightItemTags.MINEWOOD_LOGS_ITEM_TAG, TwilightBlocks.MINEWOOD_CHEST, TwilightBlocks.TRAPPED_MINEWOOD_CHEST)
                 createWoodSetRecipes(TwilightBlocks.SORTWOOD_SET, TwilightItemTags.SORTWOOD_LOGS_ITEM_TAG, TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST)
-                createToolSetRecipes(TwilightItems.IRONWOOD_SET, TwilightItemTags.IRONWOOD_TOOL_MATERIALS)
+                createToolSetRecipes(TwilightItems.IRONWOOD_TOOL_SET, TwilightItemTags.IRONWOOD_TOOL_MATERIALS)
+                createToolSetRecipes(TwilightItems.STEELEAF_TOOL_SET, TwilightItemTags.STEELEAF_TOOL_MATERIALS)
+                createToolSetRecipes(TwilightItems.KNIGHTMETAL_TOOL_SET, TwilightItemTags.KNIGHTMETAL_TOOL_MATERIALS)
+                createToolSetRecipes(TwilightItems.FIERY_TOOL_SET, TwilightItemTags.FIERY_TOOL_MATERIALS)
 
                 shaped(RecipeCategory.MISC, TwilightItems.RAW_IRONWOOD)
                     .pattern("lg")
@@ -45,7 +48,6 @@ class RecipeProvider(output: FabricPackOutput, registriesFuture: CompletableFutu
                     .define('i', Items.IRON_INGOT)
                     .unlockedBy("has_fiery_blood", has(TwilightItems.FIERY_BLOOD))
                     .save(exporter)
-
 
                 nineBlockStorageRecipesWithCustomPacking(RecipeCategory.MISC, TwilightItems.ARMOR_SHARD, RecipeCategory.MISC, TwilightItems.ARMOR_SHARD_CLUSTER, "armor_shard_cluster_from_nuggets", "armor_shard_cluster")
             }

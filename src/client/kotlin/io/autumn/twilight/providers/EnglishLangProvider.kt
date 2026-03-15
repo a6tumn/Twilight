@@ -56,7 +56,10 @@ class EnglishLangProvider(output: FabricPackOutput, registriesFuture: Completabl
         translationBuilder.add(TwilightItems.KNIGHTMETAL_INGOT, "Knightmetal Ingot")
         translationBuilder.add(TwilightItems.ARCTIC_FUR, "Arctic Fur")
         translationBuilder.add(TwilightItems.ALPHA_YETI_FUR, "Alpha Yeti Fur")
-        translationBuilder.addToolSet(TwilightItems.IRONWOOD_SET)
+        translationBuilder.addToolSet(TwilightItems.IRONWOOD_TOOL_SET)
+        translationBuilder.addToolSet(TwilightItems.STEELEAF_TOOL_SET)
+        translationBuilder.addToolSet(TwilightItems.KNIGHTMETAL_TOOL_SET)
+        translationBuilder.addToolSet(TwilightItems.FIERY_TOOL_SET)
 
         translationBuilder.add(TwilightItemTags.TWILIGHT_OAK_LOGS_ITEM_TAG, "Twilight Oak Logs")
         translationBuilder.add(TwilightItemTags.CANOPY_LOGS_ITEM_TAG, "Canopy Logs")
