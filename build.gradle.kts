@@ -6,7 +6,6 @@ val maven_group: String by project
 val archives_base_name: String by project
 
 plugins {
-    // REMEMBER TO UPDATE LOOM VERSION HERE
     id("net.fabricmc.fabric-loom") version "1.15-SNAPSHOT"
     id("maven-publish")
     id("org.jetbrains.kotlin.jvm") version "2.3.10"
@@ -36,11 +35,33 @@ fabricApi {
 
 loom {
     splitEnvironmentSourceSets()
+}
 
+val mainSourceSet = sourceSets["main"]
+val clientSourceSet = sourceSets["client"]
+
+val dataSourceSet = sourceSets.create("data") {
+    kotlin.srcDir("src/data/kotlin")
+    resources.srcDir("src/data/resources")
+
+    compileClasspath += mainSourceSet.compileClasspath + mainSourceSet.output
+    compileClasspath += clientSourceSet.compileClasspath + clientSourceSet.output
+    runtimeClasspath += mainSourceSet.runtimeClasspath + mainSourceSet.output
+    runtimeClasspath += clientSourceSet.runtimeClasspath + clientSourceSet.output
+}
+
+loom {
     mods {
         create("twilight") {
-            sourceSet(sourceSets.main.get())
-            sourceSet(sourceSets["client"])
+            sourceSet(mainSourceSet)
+            sourceSet(clientSourceSet)
+            sourceSet(dataSourceSet)
+        }
+    }
+
+    runs {
+        named("datagen") {
+            source(dataSourceSet)
         }
     }
 }
@@ -83,7 +104,5 @@ publishing {
         }
     }
 
-    repositories {
-        // REPOSITORIES TO PUBLISH HERE
-    }
+    repositories {}
 }

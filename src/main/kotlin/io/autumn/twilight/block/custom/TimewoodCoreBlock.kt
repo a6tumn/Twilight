@@ -21,7 +21,7 @@ class TimewoodCoreBlock(properties: Properties) : MagicLogCoreBlock(properties) 
             val dPos = randomOffset(rand, pos, 16)
             val state: BlockState = level.getBlockState(dPos)
 
-            if (!state.`is`(TwilightBlockTags.TIMEWOOD_CORE_EXCLUDED)) {
+            if (!state.`is`(TwilightBlockTags.TIMEWOOD_CORE_EXCLUDED.tagKey)) {
 
                 if (state.isRandomlyTicking) {
                     state.randomTick(level, dPos, rand)

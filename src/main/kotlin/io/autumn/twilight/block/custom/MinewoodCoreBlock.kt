@@ -86,7 +86,7 @@ class MinewoodCoreBlock(properties: Properties) : MagicLogCoreBlock(properties) 
         return blocksMoved
     }
 
-    private fun isReplaceable(state: BlockState): Boolean = state.`is`(TwilightBlockTags.ORE_MAGNET_SAFE_REPLACE_BLOCK)
+    private fun isReplaceable(state: BlockState): Boolean = state.`is`(TwilightBlockTags.ORE_MAGNET_SAFE_REPLACE_BLOCK.tagKey)
 
     private fun findVein(level: Level, here: BlockPos, oreState: BlockState, veinBlocks: MutableSet<BlockPos>): Boolean {
         if (here in veinBlocks) {

@@ -1,14 +1,18 @@
 package io.autumn.twilight.providers
 
-import io.autumn.carminite.datagen.generators.CarminiteBlockModelGenerators
-import io.autumn.carminite.datagen.generators.CarminiteItemModelGenerators
-import io.autumn.carminite.datagen.providers.CarminiteModelProvider
+import io.autumn.carminite.datagen.createFlatItemModels
+import io.autumn.carminite.datagen.createPlantWithAltPotted
+import io.autumn.carminite.datagen.createToolSetModels
+import io.autumn.carminite.datagen.createWoodSetModels
 import io.autumn.carminite.wood.WoodSet
 import io.autumn.twilight.Twilight
 import io.autumn.twilight.block.TwilightBlocks
 import io.autumn.twilight.block.custom.HedgeBlock
 import io.autumn.twilight.block.custom.MagicLogCoreBlock
 import io.autumn.twilight.item.TwilightItems
+import io.autumn.twilight.lists.TwilightBlockFamilies
+import io.autumn.twilight.specialrenderer.custom.LocklessChestSpecialRenderer
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.minecraft.client.data.models.BlockModelGenerators
 import net.minecraft.client.data.models.BlockModelGenerators.createSimpleBlock
@@ -21,48 +25,49 @@ import net.minecraft.client.data.models.model.ModelTemplates
 import net.minecraft.client.data.models.model.TextureMapping
 import net.minecraft.client.data.models.model.TexturedModel
 import net.minecraft.client.renderer.block.dispatch.Variant
+import net.minecraft.client.renderer.item.ItemModel
 import net.minecraft.client.resources.model.sprite.Material
 import net.minecraft.resources.Identifier
 import net.minecraft.util.random.WeightedList
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 
-class ModelProvider(output: FabricPackOutput) : CarminiteModelProvider(output) {
-    override fun generateCarminiteBlockStateModels(blockModelGenerators: CarminiteBlockModelGenerators) {
+class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
+    override fun generateBlockStateModels(blockModelGenerators: BlockModelGenerators) {
         blockModelGenerators.createTrivialCube(TwilightBlocks.ROOT_BLOCK)
         blockModelGenerators.createTrivialCube(TwilightBlocks.LIVEROOT_BLOCK)
         createHedge(blockModelGenerators, "hedge")
-        blockModelGenerators.createPlantWithAltPotted("fiddlehead", TwilightBlocks.FIDDLEHEAD, TwilightBlocks.POTTED_FIDDLEHEAD,Twilight.namespaceAndPath("block/potted_fiddlehead"), BlockModelGenerators.PlantType.TINTED)
-        blockModelGenerators.createPlantWithAltPotted("mushgloom", TwilightBlocks.MUSHGLOOM, TwilightBlocks.POTTED_MUSHGLOOM, Twilight.namespaceAndPath("block/potted_mushgloom"),BlockModelGenerators.PlantType.NOT_TINTED)
+        blockModelGenerators.createPlantWithAltPotted("fiddlehead", TwilightBlocks.FIDDLEHEAD, TwilightBlocks.POTTED_FIDDLEHEAD, Twilight.namespaceAndPath("block/potted_fiddlehead"), BlockModelGenerators.PlantType.TINTED)
+        blockModelGenerators.createPlantWithAltPotted("mushgloom", TwilightBlocks.MUSHGLOOM, TwilightBlocks.POTTED_MUSHGLOOM, Twilight.namespaceAndPath("block/potted_mushgloom"), BlockModelGenerators.PlantType.NOT_TINTED)
         blockModelGenerators.blockStateOutput.accept(createSimpleBlock(TwilightBlocks.MAYAPPLE, MultiVariant(WeightedList.of(Variant(ModelLocationUtils.getModelLocation(TwilightBlocks.MAYAPPLE))))))
         blockModelGenerators.blockStateOutput.accept(createSimpleBlock(TwilightBlocks.POTTED_MAYAPPLE, MultiVariant(WeightedList.of(Variant(ModelLocationUtils.getModelLocation(TwilightBlocks.POTTED_MAYAPPLE))))))
         blockModelGenerators.createFlatItemModel(TwilightBlocks.MAYAPPLE.asItem())
 
-        blockModelGenerators.createWoodSetModels(TwilightBlocks.TWILIGHT_OAK_SET, Twilight.NAMESPACE, -12012264,  TwilightBlocks.TWILIGHT_OAK_CHEST, TwilightBlocks.TRAPPED_TWILIGHT_OAK_CHEST, false)
+        blockModelGenerators.createWoodSetModels(TwilightBlocks.TWILIGHT_OAK_SET, TwilightBlockFamilies.TWILIGHT_OAK.blockFamily, -12012264)
         blockModelGenerators.createTintedLeaves(TwilightBlocks.RAINBOW_OAK_LEAVES, TexturedModel.LEAVES, 0xFFAA88CC.toInt())
         blockModelGenerators.createPlantWithDefaultItem(TwilightBlocks.RAINBOW_OAK_SAPLING, TwilightBlocks.POTTED_RAINBOW_OAK_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED)
 
-        blockModelGenerators.createWoodSetModels( TwilightBlocks.CANOPY_SET, Twilight.NAMESPACE,-10380959,  TwilightBlocks.CANOPY_CHEST, TwilightBlocks.TRAPPED_CANOPY_CHEST, true)
+        blockModelGenerators.createWoodSetModels( TwilightBlocks.CANOPY_SET, TwilightBlockFamilies.CANOPY.blockFamily,-10380959)
 
-        blockModelGenerators.createWoodSetModels(TwilightBlocks.TWILIGHT_MANGROVE_SET, Twilight.NAMESPACE,-8345771,  TwilightBlocks.TWILIGHT_MANGROVE_CHEST, TwilightBlocks.TRAPPED_TWILIGHT_MANGROVE_CHEST, true)
+        blockModelGenerators.createWoodSetModels(TwilightBlocks.TWILIGHT_MANGROVE_SET, TwilightBlockFamilies.TWILIGHT_MANGROVE.blockFamily,-8345771)
         blockModelGenerators.createTrivialCube(TwilightBlocks.TWILIGHT_MANGROVE_ROOT)
 
-        blockModelGenerators.createWoodSetModels(TwilightBlocks.DARKWOOD_SET, Twilight.NAMESPACE,-12012264,  TwilightBlocks.DARKWOOD_CHEST, TwilightBlocks.TRAPPED_DARKWOOD_CHEST, false)
+        blockModelGenerators.createWoodSetModels(TwilightBlocks.DARKWOOD_SET, TwilightBlockFamilies.DARKWOOD.blockFamily,-12012264)
 
-        blockModelGenerators.createWoodSetModels(TwilightBlocks.TIMEWOOD_SET, Twilight.NAMESPACE,6986775,  TwilightBlocks.TIMEWOOD_CHEST, TwilightBlocks.TRAPPED_TIMEWOOD_CHEST, true)
+        blockModelGenerators.createWoodSetModels(TwilightBlocks.TIMEWOOD_SET, TwilightBlockFamilies.TIMEWOOD.blockFamily,6986775)
         createMagicLogCore(blockModelGenerators, TwilightBlocks.TIMEWOOD_SET, TwilightBlocks.TIMEWOOD_CORE)
 
-        blockModelGenerators.createWoodSetModels(TwilightBlocks.TRANSWOOD_SET, Twilight.NAMESPACE,7130346,  TwilightBlocks.TRANSWOOD_CHEST, TwilightBlocks.TRAPPED_TRANSWOOD_CHEST, false)
+        blockModelGenerators.createWoodSetModels(TwilightBlocks.TRANSWOOD_SET, TwilightBlockFamilies.TRANSWOOD.blockFamily,7130346)
         createMagicLogCore(blockModelGenerators, TwilightBlocks.TRANSWOOD_SET, TwilightBlocks.TRANSWOOD_CORE)
 
-        blockModelGenerators.createWoodSetModels(TwilightBlocks.MINEWOOD_SET, Twilight.NAMESPACE,16576836,  TwilightBlocks.MINEWOOD_CHEST, TwilightBlocks.TRAPPED_MINEWOOD_CHEST, true)
+        blockModelGenerators.createWoodSetModels(TwilightBlocks.MINEWOOD_SET, TwilightBlockFamilies.MINEWOOD.blockFamily,16576836)
         createMagicLogCore(blockModelGenerators, TwilightBlocks.MINEWOOD_SET, TwilightBlocks.MINEWOOD_CORE)
 
-        blockModelGenerators.createWoodSetModels(TwilightBlocks.SORTWOOD_SET, Twilight.NAMESPACE,3558403,  TwilightBlocks.SORTWOOD_CHEST, TwilightBlocks.TRAPPED_SORTWOOD_CHEST, true)
+        blockModelGenerators.createWoodSetModels(TwilightBlocks.SORTWOOD_SET, TwilightBlockFamilies.SORTWOOD.blockFamily,3558403)
         createMagicLogCore(blockModelGenerators, TwilightBlocks.SORTWOOD_SET, TwilightBlocks.SORTWOOD_CORE)
     }
 
-    override fun generateCarminiteItemModels(itemModelGenerators: CarminiteItemModelGenerators) {
+    override fun generateItemModels(itemModelGenerators: ItemModelGenerators) {
         itemModelGenerators.createFlatItemModels(
             listOf(
                 TwilightItems.RAVEN_FEATHER,
@@ -83,19 +88,19 @@ class ModelProvider(output: FabricPackOutput) : CarminiteModelProvider(output) {
                 TwilightItems.ALPHA_YETI_FUR
             )
         )
+
         createTwoLayerItemModels(itemModelGenerators,
             listOf(
                 TwilightItems.BORER_ESSENCE
-            ),
-            listOf(
+            ), listOf(
                 Twilight.namespaceAndPath("borer_essence")
             )
         )
 
-        itemModelGenerators.createToolSetItemModels(TwilightItems.IRONWOOD_TOOL_SET)
-        itemModelGenerators.createToolSetItemModels(TwilightItems.STEELEAF_TOOL_SET)
-        itemModelGenerators.createToolSetItemModels(TwilightItems.KNIGHTMETAL_TOOL_SET)
-        itemModelGenerators.createToolSetItemModels(TwilightItems.FIERY_TOOL_SET)
+        itemModelGenerators.createToolSetModels(TwilightItems.IRONWOOD_TOOL_SET)
+        itemModelGenerators.createToolSetModels(TwilightItems.STEELEAF_TOOL_SET)
+        itemModelGenerators.createToolSetModels(TwilightItems.KNIGHTMETAL_TOOL_SET)
+        itemModelGenerators.createToolSetModels(TwilightItems.FIERY_TOOL_SET)
     }
 
     private fun createTwoLayerItemModels(itemModelGenerators: ItemModelGenerators, itemList: List<Item>, idList: List<Identifier>) {
@@ -107,9 +112,19 @@ class ModelProvider(output: FabricPackOutput) : CarminiteModelProvider(output) {
         }
     }
 
+    private fun createLocklessChest(blockModelGenerators: BlockModelGenerators, block: Block, particle: Block, texture: Identifier) {
+        blockModelGenerators.createParticleOnlyBlock(block, particle)
+
+        val chestItem: Item = block.asItem()
+        val itemModelBase: Identifier = ModelTemplates.CHEST_INVENTORY.create(chestItem, TextureMapping.particle(particle), blockModelGenerators.modelOutput)
+        val plainModel: ItemModel.Unbaked = ItemModelUtils.specialModel(itemModelBase, LocklessChestSpecialRenderer.Unbaked(texture))
+
+        blockModelGenerators.itemModelOutput.accept(chestItem, plainModel)
+    }
+
     private fun createMagicLogCore(blockModelGenerators: BlockModelGenerators, woodSet: WoodSet, coreBlock: Block) {
-        val mappingOff = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodSet.woodId}_core")), Material(Twilight.namespaceAndPath("block/${woodSet.woodId}_log_top")))
-        val mappingOn = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodSet.woodId}_core_on")), Material(Twilight.namespaceAndPath("block/${woodSet.woodId}_log_top")))
+        val mappingOff = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodSet.woodPath}_core")), Material(Twilight.namespaceAndPath("block/${woodSet.woodPath}_log_top")))
+        val mappingOn = TextureMapping.column(Material(Twilight.namespaceAndPath("block/${woodSet.woodPath}_core_on")), Material(Twilight.namespaceAndPath("block/${woodSet.woodPath}_log_top")))
 
         val offId = ModelTemplates.CUBE_COLUMN.create(coreBlock, mappingOff, blockModelGenerators.modelOutput)
         val onId = blockModelGenerators.createSuffixedVariant(coreBlock, "_on", ModelTemplates.CUBE_COLUMN) { mappingOn }

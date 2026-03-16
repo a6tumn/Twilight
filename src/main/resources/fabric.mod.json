@@ -32,7 +32,7 @@
 		],
 		"fabric-datagen": [
 			{
-				"value": "io.autumn.twilight.TwilightDataGenerator",
+				"value": "io.autumn.twilight.TwilightData",
 				"adapter": "kotlin"
 			}
 		]

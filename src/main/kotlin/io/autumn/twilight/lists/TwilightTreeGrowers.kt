@@ -1,98 +1,33 @@
 package io.autumn.twilight.lists
 
 import io.autumn.twilight.bootstrap.TwilightTreeConfigurations
+import net.minecraft.resources.ResourceKey
 import net.minecraft.world.level.block.grower.TreeGrower
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 import java.util.Optional
 
-object TwilightTreeGrowers {
-    val TWILIGHT_OAK = TreeGrower(
-        "twilight_oak",
-        0.1f,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(TwilightTreeConfigurations.TWILIGHT_OAK),
-        Optional.of(TwilightTreeConfigurations.FANCY_TWILIGHT_OAK),
-        Optional.empty(),
-        Optional.empty()
-    )
-    val RAINBOW_OAK = TreeGrower(
-    "rainbow_oak",
-    0.1f,
-    Optional.empty(),
-    Optional.empty(),
-    Optional.of(TwilightTreeConfigurations.RAINBOW_OAK),
-    Optional.of(TwilightTreeConfigurations.FANCY_RAINBOW_OAK),
-    Optional.empty(),
-    Optional.empty()
-    )
-    val CANOPY = TreeGrower(
-        "canopy",
-        0.1f,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(TwilightTreeConfigurations.CANOPY),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty()
-    )
-    val TWILIGHT_MANGROVE = TreeGrower(
-        "twilight_mangrove",
-        0.1f,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(TwilightTreeConfigurations.TWILIGHT_MANGROVE),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty()
-    )
-    val DARKWOOD = TreeGrower(
-        "darkwood",
-        0.1f,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(TwilightTreeConfigurations.DARKWOOD),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty()
-    )
-    val TIMEWOOD = TreeGrower(
-        "timewood",
-        0.1f,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(TwilightTreeConfigurations.TIMEWOOD),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty()
-    )
-    val TRANSWOOD = TreeGrower(
-        "transwood",
-        0.1f,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(TwilightTreeConfigurations.TRANSWOOD),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty()
-    )
-    val MINEWOOD = TreeGrower(
-        "minewood",
-        0.1f,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(TwilightTreeConfigurations.MINEWOOD),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty()
-    )
-    val SORTWOOD = TreeGrower(
-        "sortwood",
-        0.1f,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(TwilightTreeConfigurations.SORTWOOD),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty()
-    )
+enum class TwilightTreeGrowers(
+    val treeGrower: TreeGrower
+) {
+    TWILIGHT_OAK(createTreeGrower("twilight_oak", tree = Optional.of(TwilightTreeConfigurations.TWILIGHT_OAK), secondaryTree = Optional.of(TwilightTreeConfigurations.FANCY_TWILIGHT_OAK))),
+    RAINBOW_OAK(createTreeGrower("rainbow_oak", tree = Optional.of(TwilightTreeConfigurations.RAINBOW_OAK), secondaryTree = Optional.of(TwilightTreeConfigurations.FANCY_RAINBOW_OAK))),
+    CANOPY(createTreeGrower("canopy", tree = Optional.of(TwilightTreeConfigurations.CANOPY))),
+    TWILIGHT_MANGROVE(createTreeGrower("twilight_mangrove", tree = Optional.of(TwilightTreeConfigurations.TWILIGHT_MANGROVE))),
+    DARKWOOD(createTreeGrower("darkwood", tree = Optional.of(TwilightTreeConfigurations.DARKWOOD))),
+    TIMEWOOD(createTreeGrower("timewood", tree = Optional.of(TwilightTreeConfigurations.TIMEWOOD))),
+    TRANSWOOD(createTreeGrower("transwood", tree = Optional.of(TwilightTreeConfigurations.TRANSWOOD))),
+    MINEWOOD(createTreeGrower("minewood", tree = Optional.of(TwilightTreeConfigurations.MINEWOOD))),
+    SORTWOOD(createTreeGrower("sortwood", tree = Optional.of(TwilightTreeConfigurations.SORTWOOD)));
 }
+
+private fun createTreeGrower(
+    name: String,
+    secondaryChance: Float = 0.1f,
+    megaTree: Optional<ResourceKey<ConfiguredFeature<*, *>>> = Optional.empty(),
+    secondaryMegaTree: Optional<ResourceKey<ConfiguredFeature<*, *>>> = Optional.empty(),
+    tree: Optional<ResourceKey<ConfiguredFeature<*, *>>> = Optional.empty(),
+    secondaryTree: Optional<ResourceKey<ConfiguredFeature<*, *>>> = Optional.empty(),
+    flowers: Optional<ResourceKey<ConfiguredFeature<*, *>>> = Optional.empty(),
+    secondaryFlowers: Optional<ResourceKey<ConfiguredFeature<*, *>>> = Optional.empty()
+): TreeGrower =
+    TreeGrower(name, secondaryChance, megaTree, secondaryMegaTree, tree, secondaryTree, flowers, secondaryFlowers)

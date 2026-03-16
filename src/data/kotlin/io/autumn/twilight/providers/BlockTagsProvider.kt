@@ -22,10 +22,10 @@ class BlockTagsProvider(output: FabricPackOutput, registriesFuture: CompletableF
             .addOptionalTag(BlockTags.LUSH_GROUND_REPLACEABLE)
             .addOptionalTag(BlockTags.REPLACEABLE_BY_TREES)
 
-        valueLookupBuilder(TwilightBlockTags.TIMEWOOD_CORE_EXCLUDED)
+        valueLookupBuilder(TwilightBlockTags.TIMEWOOD_CORE_EXCLUDED.tagKey)
             .add(Blocks.NETHER_PORTAL)
 
-        valueLookupBuilder(TwilightBlockTags.ORE_MAGNET_SAFE_REPLACE_BLOCK)
+        valueLookupBuilder(TwilightBlockTags.ORE_MAGNET_SAFE_REPLACE_BLOCK.tagKey)
             .addOptionalTag(BlockTags.DIRT)
             .addOptionalTag(BlockTags.SAND)
             .addOptionalTag(BlockTags.NYLIUM)
@@ -51,16 +51,16 @@ class BlockTagsProvider(output: FabricPackOutput, registriesFuture: CompletableF
         valueLookupBuilder(BlockTags.SAPLINGS)
             .add(TwilightBlocks.RAINBOW_OAK_SAPLING)
 
-        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_IRONWOOD_TOOL)
+        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_IRONWOOD_TOOL.tagKey)
             .addOptionalTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
 
-        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_STEELEAF_TOOL)
+        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_STEELEAF_TOOL.tagKey)
             .addOptionalTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
 
-        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_KNIGHTMETAL_TOOL)
+        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_KNIGHTMETAL_TOOL.tagKey)
             .addOptionalTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
 
-        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_FIERY_TOOL)
+        valueLookupBuilder(TwilightBlockTags.INCORRECT_FOR_FIERY_TOOL.tagKey)
             .addOptionalTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL)
     }
 

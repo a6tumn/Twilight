@@ -5,8 +5,7 @@ import io.autumn.carminite.tool.ToolSet
 import io.autumn.carminite.tool.ToolType
 import io.autumn.torchberry.annotations.OnInitialize
 import io.autumn.twilight.Twilight
-import io.autumn.twilight.lists.TwilightBlockTags
-import io.autumn.twilight.lists.TwilightItemTags
+import io.autumn.twilight.lists.TwilightToolMaterials
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Rarity
 
@@ -33,12 +32,7 @@ object TwilightItems {
 
     val IRONWOOD_TOOL_SET = ToolSet(
         Twilight.namespaceAndPath("ironwood"),
-        TwilightBlockTags.INCORRECT_FOR_IRONWOOD_TOOL,
-        TwilightItemTags.IRONWOOD_TOOL_MATERIALS,
-        512,
-        6.0f,
-        2.0f,
-        25,
+        TwilightToolMaterials.IRONWOOD.toolMaterial,
         ToolType.entries.toSet(),
         mapOf(
             ToolType.SWORD to -2.4f,
@@ -57,12 +51,7 @@ object TwilightItems {
     )
     val STEELEAF_TOOL_SET = ToolSet(
         Twilight.namespaceAndPath("steeleaf"),
-        TwilightBlockTags.INCORRECT_FOR_STEELEAF_TOOL,
-        TwilightItemTags.STEELEAF_TOOL_MATERIALS,
-        131,
-        8.0f,
-        3.0f,
-        9,
+        TwilightToolMaterials.STEELEAF.toolMaterial,
         ToolType.entries.toSet(),
         mapOf(
             ToolType.SWORD to -2.4f,
@@ -81,12 +70,7 @@ object TwilightItems {
     )
     val KNIGHTMETAL_TOOL_SET = ToolSet(
         Twilight.namespaceAndPath("knightmetal"),
-        TwilightBlockTags.INCORRECT_FOR_KNIGHTMETAL_TOOL,
-        TwilightItemTags.KNIGHTMETAL_TOOL_MATERIALS,
-        512,
-        8.0f,
-        3.0f,
-        8,
+        TwilightToolMaterials.KNIGHTMETAL.toolMaterial,
         setOf(ToolType.SWORD, ToolType.PICKAXE, ToolType.AXE),
         mapOf(
             ToolType.SWORD to -2.4f,
@@ -101,12 +85,7 @@ object TwilightItems {
     )
     val FIERY_TOOL_SET = ToolSet(
         Twilight.namespaceAndPath("fiery"),
-        TwilightBlockTags.INCORRECT_FOR_FIERY_TOOL,
-        TwilightItemTags.FIERY_TOOL_MATERIALS,
-        1024,
-        9.0f,
-        4.0f,
-        10,
+        TwilightToolMaterials.FIERY.toolMaterial,
         setOf(ToolType.SWORD, ToolType.PICKAXE),
         mapOf(
             ToolType.SWORD to -2.4f,

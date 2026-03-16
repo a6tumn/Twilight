@@ -8,7 +8,5 @@ import java.util.concurrent.CompletableFuture
 import java.util.function.Consumer
 
 class AdvancementProvider(output: FabricPackOutput, registriesFuture: CompletableFuture<HolderLookup.Provider>) : FabricAdvancementProvider(output, registriesFuture) {
-    override fun generateAdvancement(registryLookup: HolderLookup.Provider, consumer: Consumer<AdvancementHolder>) {
-        //WIP
-    }
+    override fun generateAdvancement(registryLookup: HolderLookup.Provider, consumer: Consumer<AdvancementHolder>) {}
 }

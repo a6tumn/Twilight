@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger
 
 object Twilight {
 	const val NAMESPACE = "twilight"
-    val LOGGER: Logger? = LogManager.getLogger(NAMESPACE)
+	val LOGGER: Logger? = LogManager.getLogger(NAMESPACE)
 
 	fun namespaceAndPath(path: String): Identifier = Identifier.fromNamespaceAndPath(NAMESPACE, path)
 }
